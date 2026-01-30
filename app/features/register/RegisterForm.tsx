@@ -13,6 +13,7 @@ import { RegisterFormData } from "./register.types";
 import { AUTH_TEXT } from "../../constants/label";
 import DOBSelect from "@/app/components/dobselect";
 import { ROUTES } from "@/app/shared/routes/app.route";
+import { COUNTRY_CODES } from "@/app/constants/countrycode";
 
 export default function RegisterForm() {
   const router = useRouter();
@@ -76,16 +77,18 @@ export default function RegisterForm() {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-3xl space-y-6 text-white"
+        className="w-full space-y-6 text-white"
       >
-        {error && <div className="text-red-500 mb-4 text-sm">{error}</div>}
+        {error && <div className="text-red-500 text-sm">{error}</div>}
 
+        {/* Email */}
         <Input
           {...register("email")}
           placeholder={AUTH_TEXT.register.emailLabel}
           error={errors.email?.message}
         />
 
+        {/* Phone */}
         <Input
           {...register("phone")}
           placeholder={AUTH_TEXT.register.phoneLabel}
@@ -94,16 +97,27 @@ export default function RegisterForm() {
             <select
               value={countryCode}
               onChange={(e) => setCountryCode(e.target.value)}
-              className="bg-transparent text-md outline-none text-black inset-0"
+              className="bg-transparent
+                                  text-black
+                                  text-md
+                                  pr-4
+                                  outline-none
+                                  border-b-2
+                                  border-lime-500
+                                  focus:border-lime-500
+                                  cursor-pointer"
             >
-              <option value="+91">+91</option>
-              <option value="+1">+1</option>
-              <option value="+44">+44</option>
+              {COUNTRY_CODES.map((item) => (
+                <option key={item.code} value={item.code}>
+                  {item.code}
+                </option>
+              ))}
             </select>
           }
         />
 
-        <div className="flex gap-2">
+        {/* First / Last Name */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input
             {...register("firstName")}
             placeholder={AUTH_TEXT.register.firstLabel}
@@ -117,6 +131,7 @@ export default function RegisterForm() {
           />
         </div>
 
+        {/* Password */}
         <Input
           {...register("password")}
           type={showPassword ? "text" : "password"}
@@ -124,14 +139,15 @@ export default function RegisterForm() {
           error={errors.password?.message}
           rightIcon={
             showPassword ? (
-              <FaEyeSlash size={26} className="text-black" />
+              <FaEyeSlash size={22} className="text-black" />
             ) : (
-              <FaEye size={26} className="text-black" />
+              <FaEye size={22} className="text-black" />
             )
           }
-          onRightIconClick={() => setShowPassword((prev) => !prev)}
+          onRightIconClick={() => setShowPassword((p) => !p)}
         />
 
+        {/* Confirm Password */}
         <Input
           {...register("confirmPassword")}
           type={showConfirmPassword ? "text" : "password"}
@@ -139,48 +155,51 @@ export default function RegisterForm() {
           error={errors.confirmPassword?.message}
           rightIcon={
             showConfirmPassword ? (
-              <FaEyeSlash size={24} className="text-black" />
+              <FaEyeSlash size={22} className="text-black" />
             ) : (
-              <FaEye size={24} className="text-black" />
+              <FaEye size={22} className="text-black" />
             )
           }
-          onRightIconClick={() => setShowConfirmPassword((prev) => !prev)}
+          onRightIconClick={() => setShowConfirmPassword((p) => !p)}
         />
 
+        {/* DOB */}
         <div>
           <DOBSelect />
         </div>
 
-        <label className="space-y-8">
+        {/* Terms */}
+        <label className="flex items-start gap-3 text-sm">
           <input
             type="checkbox"
-            className="mt-1 h-4 w-4 border-2 border-gray-400"
-          />{" "}
-          <span>
+            className="mt-1 h-5 w-5 border border-gray-400"
+          />
+          <span className="text-lg">
             {AUTH_TEXT.register.terms}{" "}
-            <a href="#" className="text-lime-400">
+            <a href="#" className="text-lime-400 underline">
               terms & conditions
             </a>
           </span>
         </label>
 
+        {/* Submit */}
         <Button
           disabled={isLoading}
-          className="w-full py-3 bg-[rgb(var(--color-primary-lime))] text-white"
+          className="w-full py-3 bg-lime-500 text-white font-medium rounded-md"
         >
           {isLoading ? "Registering..." : AUTH_TEXT.register.submitButton}
         </Button>
-        <div className="register-footer">
-          <p>
-            {AUTH_TEXT.register.hasAccount}{" "}
-            <Link
-              href={ROUTES.LOGIN}
-              className="text-lime-400 underline hover:text-lime-500"
-            >
-              Login here
-            </Link>
-          </p>
-        </div>
+
+        {/* Footer */}
+        <p className="text-lg">
+          {AUTH_TEXT.register.hasAccount}{" "}
+          <Link
+            href={ROUTES.LOGIN}
+            className="text-lime-400 underline hover:text-lime-500"
+          >
+            Login here
+          </Link>
+        </p>
       </form>
     </>
   );

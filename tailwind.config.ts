@@ -1,11 +1,19 @@
 import type { Config } from "tailwindcss";
-// import "./app/styles/theme.scss"
 
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}"],
   theme: {
     extend: {
-      colors: {},
+      colors: {
+        primary: "var(--color-primary)",
+        "primary-lime": "var(--color-primary-lime)",
+      },
+      fontSize: {
+        fs: "var(--text-fs)",
+        fb: "var(--text-fb)",
+        vs: "var(--text-vs)",
+        sf: "var(--text-sf)",
+      },
     },
   },
 };

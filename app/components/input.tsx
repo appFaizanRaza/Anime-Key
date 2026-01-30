@@ -20,14 +20,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       onRightIconClick,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <div className="w-full">
         {label && (
-          <label className="mb-1 block text-sm text-gray-300">
-            {label}
-          </label>
+          <label className="mb-1 block text-sm text-gray-300">{label}</label>
         )}
 
         {/* INPUT WRAPPER */}
@@ -36,14 +34,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             "flex h-14 items-center rounded-md border bg-white transition",
             error
               ? "border-red-500"
-              : "border-gray-300 focus-within:border-primary-lime"
+              : "border-gray-300 focus-within:border-primary-lime",
           )}
         >
           {/* LEFT ADDON (STD CODE) */}
           {leftAddon && (
-            <div className="flex items-center px-3 border-r border-gray-300 text-black">
-              {leftAddon}
-            </div>
+            <div className="flex items-center px-3 text-black">{leftAddon}</div>
           )}
 
           {/* INPUT */}
@@ -52,7 +48,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             {...props}
             className={cn(
               "flex-1 h-full bg-transparent px-4 text-sm text-black outline-none",
-              className
+              className,
             )}
           />
 
@@ -69,13 +65,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         </div>
 
         {error && (
-          <p className="mt-1 text-xs font-semibold text-red-500">
-            {error}
-          </p>
+          <p className="mt-1 text-xs font-semibold text-red-500">{error}</p>
         )}
       </div>
     );
-  }
+  },
 );
 
 Input.displayName = "Input";

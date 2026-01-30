@@ -5,11 +5,11 @@ export const AUTH_TEXT = {
     emailLabel: "Enter Email Address or Phone Number",
     passwordLabel: "Password",
     submitButton: "Login",
-    createAccount: "Create a new account",
-    forgotPassword: "Forgot password?",
+    createAccount: "CREATE A NEW ACCOUNT",
+    forgotPassword: "FORGOT PASSWORD ?",
     or: "or",
     Google: "Continue with Google",
-    Guest: "Continue as Guest",
+    english: "English",
   },
 
   register: {

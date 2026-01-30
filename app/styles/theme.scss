@@ -1,8 +1,9 @@
 :root {
-  /* Brand Colors */
-  --color-primary-lime: 113 199 4; /* #71C704 */
-}
+  --color-primary: white;
+  --color-primary-lime: #71c704;
 
-@theme{
-   --color-primary-lime: red; /* #71C704 */
+  --text-fs: 16px;
+  --text-fb: 22px;
+  --text-vs: 36px;
+  --text-sf: 48px;
 }
