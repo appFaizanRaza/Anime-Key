@@ -48,7 +48,8 @@ export async function POST(req: Request) {
       );
     }
 
-    return NextResponse.json({
+    // ✅ SUCCESS RESPONSE
+    const response = NextResponse.json({
       message: "Login successful",
       user: {
         id: user.id,
@@ -56,6 +57,15 @@ export async function POST(req: Request) {
         phone: user.phone,
       },
     });
+
+    // ✅ COOKIE SET HERE
+    response.cookies.set("auth-token", String(user.id), {
+      httpOnly: true,
+      path: "/",
+      sameSite: "lax",
+    });
+
+    return response;
   }
 
   /* ---------- REGISTER ---------- */
@@ -63,7 +73,6 @@ export async function POST(req: Request) {
     const { firstName, lastName, dob } = body;
 
     const exists = users.some((u) => u.email === email || u.phone === phone);
-
     if (exists) {
       return NextResponse.json(
         { message: "Email or phone already registered" },
@@ -85,10 +94,7 @@ export async function POST(req: Request) {
     await writeUsers(users);
 
     return NextResponse.json(
-      {
-        message: "Registration successful",
-        user: { id: newUser.id, email: newUser.email },
-      },
+      { message: "Registration successful" },
       { status: 201 },
     );
   }

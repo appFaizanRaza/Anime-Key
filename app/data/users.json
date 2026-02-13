@@ -7,5 +7,23 @@
     "firstName": "Faizan",
     "lastName": "Raza",
     "dob": ""
+  },
+  {
+    "id": 2,
+    "email": "loveleesha@app.com",
+    "phone": "7349349",
+    "password": "Welcome@923",
+    "firstName": "Faiza ",
+    "lastName": "Raza",
+    "dob": ""
+  },
+  {
+    "id": 3,
+    "email": "loveleeshaa@app.com",
+    "phone": "62073942",
+    "password": "Welcome@923",
+    "firstName": "Faizan",
+    "lastName": "loveleesha@app.com",
+    "dob": ""
   }
 ]

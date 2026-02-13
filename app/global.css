@@ -1,2 +1,40 @@
 @import "./styles/theme.scss";
-@import "tailwindcss";
+/* Arrows */
+.swiper-button-prev,
+.swiper-button-next {
+  color: #fff !important;
+  width: 18px !important;
+  display: flex !important;
+}
+
+@media (max-width: 768px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none !important;
+  }
+}
+/* Pagination bullets */
+.swiper-pagination-bullet {
+  background-color: #fff !important;
+  opacity: 0.6;
+  width: 36px !important;
+  height: 6px !important;   /* thinner = cleaner */
+  border-radius: 2px !important; /* rectangle */
+  margin: 0 6px !important;
+}
+
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+
+
+/* Hide scrollbar but keep scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}

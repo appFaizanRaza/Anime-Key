@@ -31,11 +31,9 @@ export default function LoginForm() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  /* ------------------ PHONE VS EMAIL DETECTION ------------------ */
   const inputValue = watch("email") || "";
-  const isPhoneInput = /^\d*$/.test(inputValue); // digits OR empty only
+  const isPhoneInput = /^\d*$/.test(inputValue);
 
-  /* ------------------ SUBMIT ------------------ */
   const onSubmit = async (data: LoginFormValues) => {
     setIsLoading(true);
     setError(null);
@@ -61,7 +59,7 @@ export default function LoginForm() {
         return;
       }
 
-      // ✅ SUCCESS
+      // ✅ LOGIN SUCCESS → HOME
       router.push("/");
     } catch {
       setError("Something went wrong");
@@ -73,14 +71,15 @@ export default function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full max-w-xl space-y-8 text-white"
+      className="w-full max-w-xl space-y-6 text-form"
     >
       {error && <p className="text-red-500 text-sm">{error}</p>}
 
       <Input
         {...register("email")}
-        placeholder="Enter email or phone number"
+        placeholder={AUTH_TEXT.login.emailLabel}
         error={errors.email?.message}
+        autoComplete="new-password"
         leftAddon={
           isPhoneInput ? (
             <select
@@ -88,14 +87,13 @@ export default function LoginForm() {
               onChange={(e) => setCountryCode(e.target.value)}
               className="
                 bg-transparent
-                text-black
                 text-md
                 pr-4
                 outline-none
                 border-b-2
-                border-lime-500
-                focus:border-lime-500
+              border-button
                 cursor-pointer
+                text-center
               "
             >
               {COUNTRY_CODES.map((item) => (
@@ -111,13 +109,13 @@ export default function LoginForm() {
       <Input
         {...register("password")}
         type={showPassword ? "text" : "password"}
-        placeholder="Password"
+        placeholder={AUTH_TEXT.login.passwordLabel}
         error={errors.password?.message}
         rightIcon={
           showPassword ? (
-            <FaEyeSlash size={26} className="text-black" />
+            <FaEye size={22} className="text-black" />
           ) : (
-            <FaEye size={26} className="text-black" />
+            <FaEyeSlash size={22} className="text-black" />
           )
         }
         onRightIconClick={() => setShowPassword((p) => !p)}
@@ -126,13 +124,13 @@ export default function LoginForm() {
       <Button
         type="submit"
         disabled={isLoading}
-        className="w-full py-3 rounded-lg bg-lime-600 text-primary font-semibold"
+        className="w-full py-3 rounded-lg bg-button font-semibold"
       >
         {isLoading ? "Logging in..." : AUTH_TEXT.login.submitButton}
       </Button>
 
       <div className="space-y-2">
-        <h2 className="text-xl text-lime-400 underline">
+        <h2 className="text-button underline">
           <a href="/register">{AUTH_TEXT.login.createAccount}</a>
         </h2>
         <h2>{AUTH_TEXT.login.forgotPassword}</h2>
@@ -140,7 +138,7 @@ export default function LoginForm() {
 
       <div className="flex items-center my-6 gap-4">
         <div className="flex-1 h-px bg-gray-600" />
-        <span className="font-bold text-primary">{AUTH_TEXT.login.or}</span>
+        <span className="font-bold text-or">{AUTH_TEXT.login.or}</span>
         <div className="flex-1 h-px bg-gray-600" />
       </div>
 
@@ -150,7 +148,9 @@ export default function LoginForm() {
         className="w-full bg-white py-3"
         icon={<FcGoogle size={20} />}
       >
-        <span className="text-gray-500">{AUTH_TEXT.login.Google}</span>
+        <span className="text-google font-roboto">
+          {AUTH_TEXT.login.Google}
+        </span>
       </Button>
     </form>
   );

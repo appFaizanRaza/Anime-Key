@@ -1,8 +1,32 @@
-import { AUTH_TEXT } from "./constants/label";
+import FeaturedSlider from "./components/featuredslider";
+import Header from "./components/header";
+import HeroSection from "./components/herosection";
+import TopFiveSlider from "./components/top5slider";
+import { bannerItems, trendingItems } from "./data/apiData";
+import Goblin from "./components/goblin";
+import Footer from "./components/footer";
+
 export default function Home() {
   return (
     <div>
-      <h1>{AUTH_TEXT.register.title}</h1>
+      <Header />
+      <HeroSection items={bannerItems} />
+      <FeaturedSlider
+        title="Featured"
+        items={[...bannerItems, ...trendingItems]}
+        showSeeAll
+      />
+      <FeaturedSlider title="Trending" items={[...trendingItems]} />
+      <FeaturedSlider title="Movies For You" items={[...bannerItems]} />
+      <TopFiveSlider title="Top Five" items={bannerItems} />;
+      <Goblin />
+      <FeaturedSlider
+        title="Children"
+        items={[...bannerItems, ...trendingItems]}
+        showSeeAll
+      />
+      <FeaturedSlider title="Open Movies" items={[...bannerItems]} />
+      <Footer />
     </div>
   );
 }

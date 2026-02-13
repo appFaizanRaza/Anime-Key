@@ -1,9 +1,120 @@
-:root {
-  --color-primary: white;
-  --color-primary-lime: #71c704;
+@import "tailwindcss";
 
-  --text-fs: 16px;
-  --text-fb: 22px;
-  --text-vs: 36px;
-  --text-sf: 48px;
+@theme {
+  /* Colors from your theme.scss */
+  --color-primary: #a3e635;
+  --color-form: #ffffff;
+  --color-button: #71c704;
+  --color-scroll: #363636;
+  --color-google: #0000008a;
+  --color-eye: #808080;
+  --color-background: #000000;
+  --color-arrow: #c1c1c1;
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  /* Typography from your Figma specs */
+  --text-header: 72px;
+  --text-hero: 36px;
+  --text-or: 22px;
+  --text-terms: 16px;
+  --text-login: 16px;
+ 
+
+  /* Spacing from your Image 1 specs */
+  --spacing-login-p: 356px;
+  --spacing-login-m: 8px;
+  /* Spacing scale */
+  --space-nav: 32px;
+
+  /* Height */
+
+  --height-header: 64px;
+
+  --height-input: 48px;
+  --height-button: 52px;
+
+  /* Blur */
+
+  --blur-header: 12px;
+
+  /* ========== Layout ========== */
+  --height-hero: 70vh;
+
+  /* ========== Blur / Glass ========== */
+  --blur-header: 12px;
+
+  /* ========== Spacing (8px grid) ========== */
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* ========== Colors ========== */
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-nav-link: #ffffff;
+  --color-nav-link-active: #ffffff;
+  --color-text-primary: #ffffff;
+  --color-text-muted: rgba(255, 255, 255, 0.6);
+  --color-desc-color: rgba(255, 255, 255, 0.75);
+
+  --color-accent-green: #a3e635;
+  --color-text-green: #71c704;
+  --color-accent-orange-light: #ffb347;
+
+  /* ========== Typography ========== */
+
+
+  --text-lg: 18px;
+  --text-xl: 20px;
+
+  --font-size-sm: 14px;
+  --font-size-lg: 18px;
+
+ 
+
+
+  --letter-space-tight: -0.02em;
+
+  --hero-title-size: 64px;
+  --text-desc-size: 16px;
+  --text-meta-size: 14px;
+  --text-rating-size: 16px;
+
+  --leading-height-relaxed: 1.6;
+  --letter-space-wide: 0.08em;
+
+  /* ========== Radius ========== */
+  --radius-sm: 6px;
+
+  /* ========== Motion ========== */
+  --transition-fast: 150ms;
+
+  /* ================= Buttons ================= */
+  --btn-height: 48px;
+  --btn-gap: 8px;
+  --btn-font-size: 16px;
+  --btn-font-weight: 600;
+  --btn-radius: 8px;
+
+  --color-btn-watch-bg: #a3e635;
+  --color-btn-watch-text: #000;
+  --color-btn-watch-hover: #8fd61f;
+
+  --color-btn-watchlist-bg: rgba(255, 255, 255, 0.12);
+  --color-btn-watchlist-text: #ffffff;
+  --color-btn-watchlist-border: rgba(255, 255, 255, 0.24);
+
+  --shadow-btn: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-white;
+    font-family: var(--font-inter);
+    width: 100%;
+  }
+
+  option {
+    @apply bg-scroll text-white checked:bg-button;
+  }
 }

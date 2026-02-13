@@ -10,36 +10,47 @@ export default function DOBSelect() {
   const [year, setYear] = useState("");
 
   return (
-    <div className="flex sm:grid-cols-3 gap-10">
-      <CustomSelect
-        placeholder="DD"
-        value={day}
-        onChange={setDay}
-        options={Days.map((d) => ({
-          label: String(d),
-          value: String(d),
-        }))}
-      />
+    <div className="flex gap-4 w-full">
+      {/* Day Dropdown */}
+      <div className="flex-1">
+        <CustomSelect
+          placeholder="DD"
+          value={day}
+          onChange={setDay}
+          options={Days.map((d) => ({
+            label: String(d).padStart(2, "0"), // Better UX: 01, 02...
+            value: String(d),
+          }))}
+        />
+      </div>
 
-      <CustomSelect
-        placeholder="MM"
-        value={month}
-        onChange={setMonth}
-        options={Months.map((m, i) => ({
-          label: m,
-          value: String(i + 1),
-        }))}
-      />
+      {/* Month Dropdown */}
+      <div className="flex-[1.5]">
+        {" "}
+        {/* Months need a bit more width */}
+        <CustomSelect
+          placeholder="MM"
+          value={month}
+          onChange={setMonth}
+          options={Months.map((m, i) => ({
+            label: m,
+            value: String(i + 1),
+          }))}
+        />
+      </div>
 
-      <CustomSelect
-        placeholder="YYYY"
-        value={year}
-        onChange={setYear}
-        options={Years.map((y) => ({
-          label: String(y),
-          value: String(y),
-        }))}
-      />
+      {/* Year Dropdown */}
+      <div className="flex-1">
+        <CustomSelect
+          placeholder="YYYY"
+          value={year}
+          onChange={setYear}
+          options={Years.map((y) => ({
+            label: String(y),
+            value: String(y),
+          }))}
+        />
+      </div>
     </div>
   );
 }

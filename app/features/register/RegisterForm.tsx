@@ -77,7 +77,7 @@ export default function RegisterForm() {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full space-y-6 text-white"
+        className="w-full space-y-4 text-white"
       >
         {error && <div className="text-red-500 text-sm">{error}</div>}
 
@@ -139,9 +139,9 @@ export default function RegisterForm() {
           error={errors.password?.message}
           rightIcon={
             showPassword ? (
-              <FaEyeSlash size={22} className="text-black" />
-            ) : (
               <FaEye size={22} className="text-black" />
+            ) : (
+              <FaEyeSlash size={22} className="text-black" />
             )
           }
           onRightIconClick={() => setShowPassword((p) => !p)}
@@ -155,51 +155,54 @@ export default function RegisterForm() {
           error={errors.confirmPassword?.message}
           rightIcon={
             showConfirmPassword ? (
-              <FaEyeSlash size={22} className="text-black" />
-            ) : (
               <FaEye size={22} className="text-black" />
+            ) : (
+              <FaEyeSlash size={22} className="text-black" />
             )
           }
           onRightIconClick={() => setShowConfirmPassword((p) => !p)}
         />
 
         {/* DOB */}
-        <div>
+        <div className="flex">
           <DOBSelect />
         </div>
 
-        {/* Terms */}
-        <label className="flex items-start gap-3 text-sm">
-          <input
-            type="checkbox"
-            className="mt-1 h-5 w-5 border border-gray-400"
-          />
-          <span className="text-lg">
-            {AUTH_TEXT.register.terms}{" "}
-            <a href="#" className="text-lime-400 underline">
-              terms & conditions
-            </a>
-          </span>
-        </label>
+        <div className="space-y-6 mt-8">
+          <label className="flex items-start gap-2 text-sm">
+            <input
+              type="checkbox"
+              className="mt-1 h-4 w-4 border border-gray-400"
+            />
+            <span className="text-terms">
+              {AUTH_TEXT.register.terms}{" "}
+              <a href="#" className="text-button underline">
+                terms & conditions
+              </a>
+            </span>
+          </label>
 
-        {/* Submit */}
-        <Button
-          disabled={isLoading}
-          className="w-full py-3 bg-lime-500 text-white font-medium rounded-md"
-        >
-          {isLoading ? "Registering..." : AUTH_TEXT.register.submitButton}
-        </Button>
-
-        {/* Footer */}
-        <p className="text-lg">
-          {AUTH_TEXT.register.hasAccount}{" "}
-          <Link
-            href={ROUTES.LOGIN}
-            className="text-lime-400 underline hover:text-lime-500"
+          {/* Submit */}
+          <Button
+            disabled={isLoading}
+            className="w-full py-3 bg-button text-white font-medium rounded-md"
           >
-            Login here
-          </Link>
-        </p>
+            {isLoading ? "Registering..." : AUTH_TEXT.register.submitButton}
+          </Button>
+
+          {/* Footer */}
+          <p className="text-login">
+            {AUTH_TEXT.register.hasAccount}{" "}
+            <Link
+              href={ROUTES.LOGIN}
+              className="text-button underline hover:text-button"
+            >
+              Login here
+            </Link>
+          </p>
+        </div>
+
+        {/* Terms */}
       </form>
     </>
   );
