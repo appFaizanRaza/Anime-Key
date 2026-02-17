@@ -15,5 +15,5 @@ export default function Goblin() {
         className="object-contain"
       />
     </section>
-  );
+  )
 }

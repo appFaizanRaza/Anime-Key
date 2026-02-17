@@ -1,28 +1,31 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { ContentItem, getImage } from "../data/apiData";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import ReadMore from "./readmore";
 
 interface HeroSectionProps {
   items: ContentItem[];
 }
 
 export default function HeroSection({ items }: HeroSectionProps) {
+  const [activeModal, setActiveModal] = useState<ContentItem | null>(null);
+
   return (
     <section className="relative w-full">
       <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
-        navigation
+        modules={[Navigation, Pagination]}
+        navigation={!activeModal}
         pagination={{ clickable: true }}
         loop
-        autoplay={{ delay: 6000, disableOnInteraction: false }}
         className="text-theme"
       >
         {items.map((hero) => {
@@ -37,58 +40,32 @@ export default function HeroSection({ items }: HeroSectionProps) {
 
           return (
             <SwiperSlide key={hero.id}>
-              {/* HERO WRAPPER */}
               <div className="relative h-[65vh] md:h-screen w-full overflow-hidden">
-                {/* ================= BACKGROUND IMAGE ================= */}
+                
                 <Image
                   src={bgUrl}
                   alt={hero.title}
                   fill
                   priority
-                  className="object-cover object-right"
+                  className="object-cover object-center md:object-right"
                 />
 
-                {/* ================= LEFT GRADIENT (TEXT READABILITY) ================= */}
-                <div
-                  className="
-                    absolute inset-0
-                    bg-gradient-to-r
-                    from-black/95
-                    via-black/70
-                    to-transparent
-                  "
-                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-transparent" />
+                <div className="absolute bottom-0 left-0 w-full h-56 bg-gradient-to-t from-black via-black/70 to-transparent" />
 
-                {/* ================= BOTTOM GRADIENT (FADE OUT) ================= */}
-                <div
-                  className="
-                    absolute bottom-0 left-0
-                    w-full h-56
-                    bg-gradient-to-t
-                    from-black
-                    via-black/70
-                    to-transparent
-                  "
-                />
-
-                {/* ================= CONTENT ================= */}
-                <div
-                  className="
-                    relative z-50
-                    pt-28 md:pt-72
-                    px-6 md:px-12
-                    max-w-xl
-                    flex flex-col gap-6
-                  "
-                >
+                <div className="relative z-50 pt-48 md:pt-72 px-6 md:px-12 max-w-xl flex flex-col gap-4">
+                  
                   {titleImageUrl && (
-                    <Image
-                      src={titleImageUrl}
-                      alt={hero.title}
-                      width={480}
-                      height={180}
-                      className="w-auto max-h-[160px]"
-                    />
+<div className="relative w-full max-w-[480px] aspect-[480/180]">
+  <Image
+    src={titleImageUrl}
+    alt={hero.title}
+    fill
+    className="object-contain"
+  />
+</div>
+
+
                   )}
 
                   <p className="text-white text-lg md:text-xl font-bold">
@@ -105,20 +82,47 @@ export default function HeroSection({ items }: HeroSectionProps) {
                     />
                   </div>
 
-                  <p className="text-gray-300 hidden md:block leading-relaxed">
-                    {hero.description}
-                  </p>
+                  <ReadMore
+                    text={hero.description}
+                    onOpen={() => setActiveModal(hero)}
+                  />
 
                   <p className="text-white font-extrabold text-xl hidden md:block">
                     {hero.genres.map((g) => g.name).join(" • ")} •{" "}
                     {hero.discretion}
                   </p>
+
                 </div>
               </div>
             </SwiperSlide>
           );
         })}
       </Swiper>
+
+      {activeModal && (
+        <div className="fixed inset-0 z-[99999] bg-black/60 flex items-center justify-center">
+          <div className="relative w-[90%] md:w-[650px] max-h-[85vh] bg-zinc-900 rounded-2xl p-6 shadow-2xl overflow-y-auto">
+            
+            <button
+              onClick={() => setActiveModal(null)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-white text-xl"
+            >
+              ✕
+            </button>
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold text-white mb-6">
+              {activeModal.title}
+            </h2>
+
+            <hr />
+
+            <p className="text-gray-300 leading-relaxed whitespace-pre-line">
+              {activeModal.description}
+            </p></div>
+            
+          </div>
+        </div>
+      )}
     </section>
   );
 }

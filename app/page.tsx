@@ -18,7 +18,7 @@ export default function Home() {
       />
       <FeaturedSlider title="Trending" items={[...trendingItems]} />
       <FeaturedSlider title="Movies For You" items={[...bannerItems]} />
-      <TopFiveSlider title="Top Five" items={bannerItems} />;
+      <TopFiveSlider title="Top Five" items={bannerItems} />
       <Goblin />
       <FeaturedSlider
         title="Children"

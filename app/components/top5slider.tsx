@@ -24,7 +24,7 @@ export default function TopFiveSlider({ title, items }: TopFiveSliderProps) {
             const poster =
               getImage(item.thumbnails, "VERTICAL") ||
               getImage(item.thumbnails, "HORIZONTAL") ||
-              FALLBACK_IMG;
+              FALLBACK_IMG
 
             return (
               <div key={item.id} className="relative mt-8 flex shrink-0">

@@ -54,230 +54,201 @@ export default function Header() {
 <header
   className={`
     fixed top-0 z-50 h-14 md:h-header w-full
-    transition-all duration-300
+    transition-all duration-300 px-6
     ${isScrolled
       ? "bg-accent-green/20 shadow-lg"
       : "bg-gradient-to-b from-black/70 via-black/40 to-transparent"}
   `}
 >
+  <div className="flex items-center justify-between h-full">
 
+    {/* LEFT SIDE */}
+    <div className="flex items-center">
 
+      {/* Mobile Menu Button */}
+      <button
+        className="md:hidden"
+        onClick={() => setIsMenuOpen((prev) => !prev)}
+        aria-label="Open-menu"
+      >
+        {ICONS.menu}
+      </button>
 
-      <div className="h-full flex items-center flex-auto md:gap-4 md:px-6">
-        <button
-          className="md:hidden p-2"
-          onClick={() => setIsMenuOpen((prev) => !prev)}
-          aria-label="Open-menu"
-        >
-          {ICONS.menu}
-        </button>
+      {/* Logo */}
+      <Link href="/" className="flex shrink-0">
+        <Image
+          src={COMMON.LOGO.src}
+          alt={COMMON.LOGO.alt}
+          width={60}
+          height={60}
+          className="w-8 h-8 md:w-14 md:h-14"
+        />
+      </Link>
 
-        <Link href="/" className="flex shrink-0 left-2">
-          <Image
-            src={COMMON.LOGO.src}
-            alt={COMMON.LOGO.alt}
-            width={64}
-            height={64}
-          />
-        </Link>
+      {/* Desktop Nav */}
+      <nav className="hidden md:flex items-center gap-4 ml-8">
+        {NAV_LINKS.map(({ label, href }) => {
+          const isActive = pathname === href;
 
-        <nav className="hidden md:flex items-center flex-1 gap-6">
-          {NAV_LINKS.map(({ label, href }) => {
-            const isActive = pathname === href;
-
-            return (
-              <Link
-                key={href}
-                href={href}
-                className={`
-                  font-nav
-                  text-base md:text-lg
-                  transition-colors duration-150
-                  ${
-                    isActive
-                      ? "text-text-green font-black"
-                      : "text-nav-link hover:text-text-primary"
-                  }
-                `}
-              >
-                {label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        {isMenuOpen && (
-          <div className="absolute top-full left-0 w-full bg-black/95 flex flex-col gap-6 px-6 py-8 md:hidden z-50">
-            {NAV_LINKS.map(({ label, href }) => (
-              <Link
-                key={href}
-                href={href}
-                onClick={() => setIsMenuOpen(false)}
-                className="text-white text-lg font-nav"
-              >
-                {label}
-              </Link>
-            ))}
-          </div>
-        )}
-
-        {/* RIGHT: Actions */}
-        <div className="flex items-center gap-2">
-          <Link
-            href="/register"
-            className="
-              font-black
-              text-base md:text-lg
-              text-text-green
-              py-2
-              whitespace-nowrap
-              transition-colors
-              duration-150
-            "
-          >
-            Register
-          </Link>
-
-          <span className="text-text-primary">|</span>
-
-          <Link
-            href="/login"
-            className="
-              font-black
-              text-base md:text-lg
-              text-text-green
-              py-2
-              whitespace-nowrap
-              transition-colors
-              duration-150
-            "
-          >
-            Login
-          </Link>
-
-          <button
-            aria-label="Search"
-            className="
-              p-2 rounded-full transition
-            "
-          >
-            <SearchIcon className="w-6 h-6 text-white"/>
-          </button>
-
-          {/* Language Selector */}
-          <div className="relative" ref={langDropdownRef}>
-            {/* Mobile Language Selector */}
-            <button
-              onClick={() => setIsLangOpen((p) => !p)}
-              className="md:hidden flex items-center gap-1 p-2 border rounded-md"
-              aria-label="Select language"
+          return (
+            <Link
+              key={href}
+              href={href}
+              className={`
+                font-nav text-base md:text-lg transition-colors duration-150
+                ${
+                  isActive
+                    ? "text-text-green font-black"
+                    : "text-nav-link hover:text-text-primary"
+                }
+              `}
             >
-              <Image src={HEADER_IMAGE.LOGO.src} alt={HEADER_IMAGE.LOGO.alt} width={16} height={16} />
-              {ICONS.globe}
-            </button>
+              {label}
+            </Link>
+          );
+        })}
+      </nav>
+    </div>
 
-            {isLangOpen && (
-              <div className="md:hidden absolute right-0 mt-2 w-32 bg-black/95 border border-white rounded-lg overflow-hidden z-50">
-                {LANGUAGES.map((lang) => (
-                  <button
-                    key={lang.code}
-                    onClick={() => handleLanguageSelect(lang)}
-                    className={`
-                      w-full px-4 py-2 text-left text-white 
-                      hover:bg-white transition-colors
-                      ${selectedLanguage.code === lang.code ? 'bg-white' : ''}
-                    `}
-                  >
-                    {lang.label}
-                  </button>
-                ))}
-              </div>
-            )}
+    {/* RIGHT SIDE */}
+    <div className="flex items-center gap-2 ml-8">
 
-            {/* Desktop Language Selector */}
-            <div className="hidden md:block">
-              <button
-                onClick={() => setIsLangOpen((p) => !p)}
-                className="
-                  flex items-center gap-2
-                  text-white text-sm
-                  bg-transparent
-                  border border-white/30
-                  rounded-md
-                  px-3 py-1.5
-                  cursor-pointer
-                  hover:bg-white/5
-                  transition-all
-                  min-w-25
-                "
-              >
-                <Image
-                  src={HEADER_IMAGE.LOGO.src}
-                  alt={HEADER_IMAGE.LOGO.alt}
-                  width={16}
-                  height={16}
-                  className="shrink-0"
-                />
-                <span className="flex-1 text-left">{selectedLanguage.label}</span>
-                <svg
-                  className={`w-4 h-4 transition-transform duration-200 ${isLangOpen ? 'rotate-180' : ''}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
+      <Link
+        href="/register"
+        className="font-black text-sm md:text-base lg:text-lg text-text-green whitespace-nowrap"
+      >
+        Register
+      </Link>
 
-              {/* Desktop Dropdown Menu */}
-              {isLangOpen && (
-                <div
-                  className="
-                    absolute top-full right-0 mt-2
-                    min-w-25 w-full
-                    bg-[#1a1a1a]
-                    border border-white/10
-                    rounded-md
-                    shadow-2xl
-                    overflow-hidden
-                    z-50
-                    animate-fadeIn
-                  "
-                >
-                  <div className="py-1">
-                    {LANGUAGES.map((lang) => (
-                      <button
-                        key={lang.code}
-                        onClick={() => handleLanguageSelect(lang)}
-                        className={`
-                          w-full text-left px-4 py-2.5
-                          text-sm text-white
-                          hover:bg-white/10
-                          transition-colors
-                          flex items-center gap-2
-                          ${selectedLanguage.code === lang.code ? 'bg-white/5' : ''}
-                        `}
-                      >
-                        {lang.label}
-                        {selectedLanguage.code === lang.code && (
-                          <svg
-                            className="w-4 h-4 ml-auto text-green-400"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
+      <span className="text-text-primary">|</span>
+
+      <Link
+        href="/login"
+        className="font-black text-sm md:text-base lg:text-lg text-text-green whitespace-nowrap"
+      >
+        Login
+      </Link>
+      
+      <div className="flex ml-6 gap-2">
+        {/* Search */}
+      <button aria-label="Search" className="rounded-full">
+        <SearchIcon className="w-6 h-6 text-white" />
+      </button>
+
+      {/* Language Selector */}
+      <div className="relative" ref={langDropdownRef}>
+
+  {/* Trigger Button */}
+  <button
+    onClick={() => setIsLangOpen((p) => !p)}
+    className="
+  flex items-center gap-1 md:gap-2
+  text-white text-xs md:text-sm
+  border border-white/30
+  rounded-md
+  px-2 md:px-3
+  py-1
+  hover:bg-white/5
+  transition-all
+"
+
+    aria-label="Select language"
+  >
+    <Image
+      src={HEADER_IMAGE.LOGO.src}
+      alt={HEADER_IMAGE.LOGO.alt}
+      width={16}
+      height={16}
+      className="shrink-0"
+    />
+
+    <span className="hidden md:block">
+      {selectedLanguage.label}
+    </span>
+
+    <svg
+      className={`w-4 h-4 transition-transform duration-200 ${
+        isLangOpen ? "rotate-180" : ""
+      }`}
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M19 9l-7 7-7-7"
+      />
+    </svg>
+  </button>
+  </div>
+      
+
+  {/* Dropdown */}
+  <div
+    className={`
+      absolute right-0 mt-2 w-36
+      bg-[#1a1a1a]
+      border border-white/10
+      rounded-md
+      shadow-2xl
+      overflow-hidden
+      z-50
+      transition-all duration-200 ease-out
+      ${
+        isLangOpen
+          ? "opacity-100 translate-y-0 scale-100"
+          : "opacity-0 -translate-y-2 scale-95 pointer-events-none"
+      }
+    `}
+  >
+    <div className="py-1">
+      {LANGUAGES.map((lang) => (
+        <button
+          key={lang.code}
+          onClick={() => handleLanguageSelect(lang)}
+          className={`
+            w-full text-left px-4 py-2.5
+            text-sm text-white
+            hover:bg-white/10
+            transition-colors
+            flex items-center gap-2
+            ${
+              selectedLanguage.code === lang.code
+                ? "bg-white/5"
+                : ""
+            }
+          `}
+        >
+          {lang.label}
+
+          {selectedLanguage.code === lang.code && (
+            <svg
+              className="w-4 h-4 ml-auto text-green-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          )}
+        </button>
+      ))}
+    </div>
+  </div>
+
+</div>
+
+    </div>
+
+  </div>
+</header>
+
   );
 }
