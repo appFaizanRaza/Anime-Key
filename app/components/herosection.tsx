@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ContentItem, getImage } from "../data/apiData";
-
+import { HeroSectionProps } from "../types/components/herosection";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 
@@ -11,10 +11,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import ReadMore from "./readmore";
-
-interface HeroSectionProps {
-  items: ContentItem[];
-}
 
 export default function HeroSection({ items }: HeroSectionProps) {
   const [activeModal, setActiveModal] = useState<ContentItem | null>(null);
@@ -40,32 +36,28 @@ export default function HeroSection({ items }: HeroSectionProps) {
 
           return (
             <SwiperSlide key={hero.id}>
-              <div className="relative h-[65vh] md:h-screen w-full overflow-hidden">
-                
+              <div className="relative h-[80vh] md:h-screen w-full overflow-hidden">
                 <Image
                   src={bgUrl}
                   alt={hero.title}
                   fill
                   priority
-                  className="object-cover object-center md:object-right"
+                  className="object-cover object-top-right md:object-right"
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-transparent" />
                 <div className="absolute bottom-0 left-0 w-full h-56 bg-gradient-to-t from-black via-black/70 to-transparent" />
 
-                <div className="relative z-50 pt-48 md:pt-72 px-6 md:px-12 max-w-xl flex flex-col gap-4">
-                  
+                <div className="relative z-50 pt-48 md:pt-72 px-6 md:px-12 max-w-2xl flex flex-col gap-4">
                   {titleImageUrl && (
-<div className="relative w-full max-w-[480px] aspect-[480/180]">
-  <Image
-    src={titleImageUrl}
-    alt={hero.title}
-    fill
-    className="object-contain"
-  />
-</div>
-
-
+                    <div className="relative w-[200px] sm:w-[260px] md:w-full md:max-w-[480px] aspect-[480/180]">
+                      <Image
+                        src={titleImageUrl}
+                        alt={hero.title}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
                   )}
 
                   <p className="text-white text-lg md:text-xl font-bold">
@@ -82,16 +74,19 @@ export default function HeroSection({ items }: HeroSectionProps) {
                     />
                   </div>
 
-                  <ReadMore
-                    text={hero.description}
-                    onOpen={() => setActiveModal(hero)}
-                  />
+                  <div className="hidden md:block">
+                    <ReadMore
+                      text={hero.description}
+                      onOpen={() => setActiveModal(hero)}
+                      textClassName="text-xl text-white leading-relaxed"
+                      linkClassName="text-[#66FF00] text-md font-bold cursor-pointer"
+                    />
+                  </div>
 
                   <p className="text-white font-extrabold text-xl hidden md:block">
                     {hero.genres.map((g) => g.name).join(" • ")} •{" "}
                     {hero.discretion}
                   </p>
-
                 </div>
               </div>
             </SwiperSlide>
@@ -102,7 +97,6 @@ export default function HeroSection({ items }: HeroSectionProps) {
       {activeModal && (
         <div className="fixed inset-0 z-[99999] bg-black/60 flex items-center justify-center">
           <div className="relative w-[90%] md:w-[650px] max-h-[85vh] bg-zinc-900 rounded-2xl p-6 shadow-2xl overflow-y-auto">
-            
             <button
               onClick={() => setActiveModal(null)}
               className="absolute top-4 right-4 text-gray-400 hover:text-white text-xl"
@@ -111,15 +105,15 @@ export default function HeroSection({ items }: HeroSectionProps) {
             </button>
             <div className="space-y-6">
               <h2 className="text-2xl font-bold text-white mb-6">
-              {activeModal.title}
-            </h2>
+                {activeModal.title}
+              </h2>
 
-            <hr />
+              <hr />
 
-            <p className="text-gray-300 leading-relaxed whitespace-pre-line">
-              {activeModal.description}
-            </p></div>
-            
+              <p className="text-gray-300 leading-relaxed whitespace-pre-line">
+                {activeModal.description}
+              </p>
+            </div>
           </div>
         </div>
       )}

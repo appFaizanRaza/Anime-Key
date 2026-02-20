@@ -1,11 +1,6 @@
 import { cn } from "../lib/utils";
+import { ButtonProps } from "../types/components/button";
 
-type ButtonProps = {
-  children: React.ReactNode;
-  className?: string;
-  icon?: React.ReactNode;
-  variant?: "primary";
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export default function Button({
   children,

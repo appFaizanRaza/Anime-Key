@@ -27,4 +27,14 @@ export const AUTH_TEXT = {
     terms: "I've read and accept",
     hasAccount: "Already have an account?",
   },
+
+  homepage: {
+    register: "Register",
+    login: "Login",
+  },
+
+  footer: {
+    title: "Account",
+    download: "Download Our App",
+  },
 };

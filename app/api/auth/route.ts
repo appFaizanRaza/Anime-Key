@@ -1,16 +1,7 @@
 import { NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
-
-interface User {
-  id: number;
-  email: string;
-  phone: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  dob?: string;
-}
+import { User } from "../../types/users";
 
 const filePath = path.join(process.cwd(), "app/data/users.json");
 
