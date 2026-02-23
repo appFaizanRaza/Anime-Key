@@ -36,19 +36,18 @@ export default function HeroSection({ items }: HeroSectionProps) {
 
           return (
             <SwiperSlide key={hero.id}>
-              <div className="relative h-[80vh] md:h-screen w-full overflow-hidden">
-                <Image
+<div className="relative h-[75vh] sm:h-[60vh] md:h-[85vh] lg:h-screen w-full overflow-hidden">                
+              <Image
                   src={bgUrl}
                   alt={hero.title}
                   fill
                   priority
-                  className="object-cover object-top-right md:object-right"
-                />
+className="object-cover object-[80%_center] md:object-right"                />
 
                 <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-transparent" />
                 <div className="absolute bottom-0 left-0 w-full h-56 bg-gradient-to-t from-black via-black/70 to-transparent" />
 
-                <div className="relative z-50 pt-48 md:pt-72 px-6 md:px-12 max-w-2xl flex flex-col gap-4">
+                <div className="relative z-50 pt-56 md:pt-72 px-6 md:px-12 max-w-2xl flex flex-col gap-4">
                   {titleImageUrl && (
                     <div className="relative w-[200px] sm:w-[260px] md:w-full md:max-w-[480px] aspect-[480/180]">
                       <Image

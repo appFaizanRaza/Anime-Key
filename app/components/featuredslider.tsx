@@ -7,6 +7,7 @@ export default function FeaturedSlider({
   title,
   items,
   showSeeAll = false,
+  horizontal = false, // 👈 add this
 }: FeaturedSliderProps) {
   const sliderRef = useRef<HTMLDivElement>(null);
 
@@ -27,8 +28,7 @@ export default function FeaturedSlider({
   };
 
   return (
-    <section className="relative mx-12 my-8">
-      {/* Header */}
+    <section className="relative px-4 md:px-8 lg:px-12 my-8 w-full">
       <div className="relative z-20 flex items-center justify-between mb-6">
         <h2 className="text-[25px] font-extrabold text-white flex items-center gap-3">
           <span className="h-5 w-1 bg-accent-green rounded" />
@@ -80,19 +80,24 @@ export default function FeaturedSlider({
 
         <div
           ref={sliderRef}
+          onWheel={(e) => {
+            if (window.innerWidth >= 768) e.preventDefault();
+          }}
           className="
-            flex gap-6
-            overflow-x-auto overflow-y-visible
-            scroll-smooth scrollbar-hide
-            px-1 py-16 -my-16
-          "
+    flex
+    gap-3 sm:gap-4 md:gap-5 lg:gap-6
+    overflow-x-auto md:overflow-x-hidden
+    scroll-smooth scrollbar-hide
+    px-2 md:px-4
+    py-16 -my-16
+  "
         >
           {items.map((item, index) => (
             <MovieCard
               key={item.id}
               item={item}
-              isFirst={index === 0}
-              isLast={index === items.length - 1}
+              horizontal={horizontal} // 👈 pass this down
+
             />
           ))}
         </div>

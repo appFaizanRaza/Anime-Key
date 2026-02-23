@@ -82,12 +82,18 @@ export default function Footer() {
           </h3>
 
           {/* Icons Row */}
-          <div className="flex flex-col">
+          <div className="flex flex-col space-y-2 ml-6">
             <Image
-              src={FOOTER_IMAGES.ICON.src}
+              src="/appstore.svg"
               alt={FOOTER_IMAGES.ICON.alt}
-              width={200}
-              height={200}
+              width={120}
+              height={48}
+            />
+            <Image
+              src="/googleplay.svg"
+              alt={FOOTER_IMAGES.ICON.alt}
+              width={120}
+              height={48}
             />
           </div>
         </div>

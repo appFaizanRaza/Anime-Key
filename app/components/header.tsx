@@ -12,6 +12,7 @@ import SearchIcon from "../icons/searchicon";
 import { HEADER_IMAGE } from "../assets/header.images";
 import { AUTH_TEXT } from "../constants/label";
 import { ROUTES } from "../shared/routes/app.route";
+import UserMenu from "./userMenu";
 
 export default function Header() {
   const pathname = usePathname();
@@ -23,7 +24,6 @@ export default function Header() {
 
   const langDropdownRef = useRef<HTMLDivElement>(null);
 
-  /* ================= SCROLL EFFECT ================= */
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
 
@@ -31,7 +31,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* ============== OUTSIDE CLICK CLOSE ============== */
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -54,12 +53,15 @@ export default function Header() {
     setIsLangOpen(false);
   };
 
-  /* ====================== UI ======================= */
+  const isLoggedIn = true; // replace with real auth state
+
   return (
     <header
       className={`
-        fixed top-0 z-50 w-full h-14 md:h-header
-        px-6 transition-all duration-300
+    fixed top-0 z-50 w-full
+    h-14 md:h-header
+    px-4 sm:px-6 lg:px-10
+    transition-all duration-300
         ${
           isScrolled
             ? "bg-accent-green/20 shadow-lg"
@@ -67,10 +69,8 @@ export default function Header() {
         }
       `}
     >
-      <div className="flex items-center justify-between h-full">
-        {/* ================= LEFT SIDE ================= */}
+      <div className="flex items-center justify-between h-full mx-auto">
         <div className="flex items-center">
-          {/* Mobile Menu */}
           <button
             className="md:hidden"
             onClick={() => setIsMenuOpen((prev) => !prev)}
@@ -78,8 +78,6 @@ export default function Header() {
           >
             {ICONS.menu}
           </button>
-
-          {/* Logo */}
           <Link href="/" className="flex shrink-0">
             <Image
               src={COMMON.LOGO.src}
@@ -90,7 +88,6 @@ export default function Header() {
             />
           </Link>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6 ml-8">
             {NAV_LINKS.map(({ label, href }) => {
               const isActive = pathname === href;
@@ -116,57 +113,39 @@ export default function Header() {
           </nav>
         </div>
 
-        {/* ================= RIGHT SIDE ================= */}
-        <div className="flex items-center gap-3">
-          {/* Register / Login */}
-          <Link
-            href={ROUTES.REGISTER}
-            className="font-black text-sm md:text-[18px] text-text-green whitespace-nowrap"
-          >
-            {AUTH_TEXT.homepage.register}
-          </Link>
-
-          <span className="text-text-primary">|</span>
-
-          <Link
-            href={ROUTES.LOGIN}
-            className="font-black text-sm md:text-[18px] text-text-green whitespace-nowrap"
-          >
-            {AUTH_TEXT.homepage.login}
-          </Link>
-
-          {/* Search + Language */}
-          <div className="flex items-center gap-2 ml-6">
-            {/* Search Button */}
+        <div className="flex items-center md:space-x-2">
+          {isLoggedIn ? (
+            <UserMenu name="Faizan" avatarUrl="/avatar.jpg" />
+          ) : (
+            <div className="flex gap-4 text-white">
+              <button>Login</button>
+              <button>Register</button>
+            </div>
+          )}
+          <div className="flex items-center">
             <button
               aria-label="Search"
               className="p-2 rounded-full hover:bg-white/10 transition-colors"
             >
               <SearchIcon className="w-6 h-6 text-white" />
             </button>
-
-            {/* ========== LANGUAGE SELECTOR ========== */}
-            <div className="relative" ref={langDropdownRef}>
-              {/* Trigger */}
+            <div className="" ref={langDropdownRef}>
               <button
                 onClick={() => setIsLangOpen((p) => !p)}
                 aria-label="Select language"
                 className="
-    flex items-center justify-center md:justify-start
-    gap-1 md:gap-2
-    h-[36px]
-    w-[56px] md:min-w-[120px]
-    px-2 md:px-2
-    rounded-[4px]
-    border border-white
-    bg-white/10
-    text-white text-sm font-medium
-    hover:bg-white/20
-    transition-colors
-    cursor-pointer
-  "
+  flex items-center justify-center md:justify-start
+  gap-1 md:gap-2
+  h-[36px]
+  px-3 md:px-3
+  rounded-sm
+  border border-white  
+  text-white text-sm font-medium
+  transition-colors
+  cursor-pointer
+  min-w-[48px] md:min-w-[120px]
+"
               >
-                {/* Globe */}
                 <Image
                   src={HEADER_IMAGE.LOGO.src}
                   alt={HEADER_IMAGE.LOGO.alt}
@@ -174,12 +153,10 @@ export default function Header() {
                   height={20}
                 />
 
-                {/* Language text (desktop only) */}
                 <span className="hidden md:block flex-1 text-left">
                   {selectedLanguage.label}
                 </span>
 
-                {/* Arrow */}
                 <Image
                   src={HEADER_IMAGE.ICONS.dropdown.src}
                   alt={HEADER_IMAGE.ICONS.dropdown.alt}
@@ -191,10 +168,9 @@ export default function Header() {
                 />
               </button>
 
-              {/* Dropdown */}
               <div
                 className={`
-                  absolute right-0 top-full mt-2 w-36
+                  absolute right-0 top-full w-36
                   bg-[#1a1a1a]
                   border border-white/10
                   rounded-md shadow-2xl
