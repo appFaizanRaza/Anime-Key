@@ -1,11 +1,8 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-
-type Option = {
-  label: string;
-  value: string;
-};
+import Image from "next/image";
+import { Option } from "../types/components/customselect";
 
 export default function CustomSelect({
   placeholder,
@@ -59,16 +56,18 @@ export default function CustomSelect({
         </span>
 
         {/* Arrow - Rotates when open */}
-        <svg
-          width="12"
-          height="8"
-          viewBox="0 0 12 8"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+        <div
+          className={`transition-transform duration-200 ${
+            open ? "rotate-180" : ""
+          }`}
         >
-          <path d="M1 1L6 6L11 1" stroke="#000" strokeWidth="1.5" />
-        </svg>
+          <Image
+            src="/icons/arrow-dropdown.svg"
+            alt="Arrow"
+            width={24}
+            height={24}
+          />
+        </div>
       </div>
       {/* Dropdown - CHANGED TO ABSOLUTE */}
       {open && (

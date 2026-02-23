@@ -17,7 +17,7 @@ export default function Home() {
         showSeeAll
       />
       <FeaturedSlider title="Trending" items={[...trendingItems]} />
-      <FeaturedSlider title="Movies For You" items={[...bannerItems]} />
+      <FeaturedSlider title="Movies For You" items={[...bannerItems]} horizontal={true} />
       <TopFiveSlider title="Top Five" items={bannerItems} />
       <Goblin />
       <FeaturedSlider

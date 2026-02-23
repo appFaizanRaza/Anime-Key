@@ -1,21 +1,63 @@
-interface ReadMoreProps {
-  text: string;
-  onOpen: () => void;
-}
+"use client";
 
-export default function ReadMore({ text, onOpen }: ReadMoreProps) {
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { ReadMoreProps } from "../types/components/readmore";
+
+export default function ReadMore({
+  text,
+  onOpen,
+  href,
+  textClassName = "",
+  linkClassName = "",
+  lines = 4,
+}: ReadMoreProps) {
+  const textRef = useRef<HTMLParagraphElement>(null);
+  const [isOverflowing, setIsOverflowing] = useState(false);
+
+  // Tailwind-safe clamp classes
+  const clampClass =
+    lines === 1
+      ? "line-clamp-1"
+      : lines === 2
+        ? "line-clamp-2"
+        : lines === 3
+          ? "line-clamp-3"
+          : "line-clamp-4";
+
+  useEffect(() => {
+    const el = textRef.current;
+    if (!el) return;
+
+    const checkOverflow = () => {
+      setIsOverflowing(el.scrollHeight > el.clientHeight);
+    };
+
+    requestAnimationFrame(checkOverflow);
+
+    window.addEventListener("resize", checkOverflow);
+    return () => window.removeEventListener("resize", checkOverflow);
+  }, [text, lines]);
+
   return (
-    <div className="hidden md:block">
-      <p className="text-[20px] text-white my-4 line-clamp-4">
+    <div>
+      <p ref={textRef} className={`${clampClass} ${textClassName}`}>
         {text}
       </p>
 
-      <span
-        onClick={onOpen}
-        className="text-text-green cursor-pointer"
-      >
-        Read More
-      </span>
+      {isOverflowing && (
+        <>
+          {href ? (
+            <Link href={href} className={linkClassName}>
+              Read More
+            </Link>
+          ) : (
+            <span onClick={onOpen} className={linkClassName}>
+              Read More
+            </span>
+          )}
+        </>
+      )}
     </div>
   );
 }

@@ -1,13 +1,6 @@
 import React from "react";
 import { cn } from "@/app/lib/utils";
-
-type InputProps = {
-  label?: string;
-  error?: string;
-  leftAddon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
-  onRightIconClick?: () => void;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+import { InputProps } from "../types/components/input";
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (

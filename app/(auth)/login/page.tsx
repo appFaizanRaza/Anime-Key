@@ -7,6 +7,7 @@ import LoginForm from "@/app/features/login/LoginForm";
 import { AUTH_TEXT } from "@/app/constants/label";
 import { LANGUAGES } from "@/app/constants/languages";
 import { useState, useEffect, useRef } from "react";
+import { HEADER_IMAGE } from "@/app/assets/header.images";
 
 export default function LoginPage() {
   const [isLangOpen, setIsLangOpen] = useState(false);
@@ -16,7 +17,10 @@ export default function LoginPage() {
   // Close language dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target as Node)) {
+      if (
+        langDropdownRef.current &&
+        !langDropdownRef.current.contains(event.target as Node)
+      ) {
         setIsLangOpen(false);
       }
     };
@@ -30,7 +34,7 @@ export default function LoginPage() {
     };
   }, [isLangOpen]);
 
-  const handleLanguageSelect = (lang: typeof LANGUAGES[0]) => {
+  const handleLanguageSelect = (lang: (typeof LANGUAGES)[0]) => {
     setSelectedLanguage(lang);
     setIsLangOpen(false);
   };
@@ -62,22 +66,22 @@ export default function LoginPage() {
               min-w-[120px]
             "
           >
-            <Image 
-              src="/globe.svg" 
-              alt="language" 
-              width={20} 
+            <Image
+              src={HEADER_IMAGE.LOGO.src}
+              alt={HEADER_IMAGE.LOGO.alt}
+              width={20}
               height={20}
-              className="flex-shrink-0"
             />
             <span className="flex-1 text-left">{selectedLanguage.label}</span>
-            <svg
-              className={`w-4 h-4 transition-transform duration-200 ${isLangOpen ? 'rotate-180' : ''}`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
+            <Image
+              src={HEADER_IMAGE.ICONS.dropdown.src}
+              alt={HEADER_IMAGE.ICONS.dropdown.alt}
+              width={20}
+              height={20}
+              className={`transition-transform duration-200 ${
+                isLangOpen ? "rotate-180" : ""
+              }`}
+            />
           </button>
 
           {/* Dropdown Menu */}
@@ -106,19 +110,18 @@ export default function LoginPage() {
                       hover:bg-white/10
                       transition-colors
                       flex items-center gap-2
-                      ${selectedLanguage.code === lang.code ? 'bg-white/5' : ''}
+                      ${selectedLanguage.code === lang.code ? "bg-white/5" : ""}
                     `}
                   >
                     {lang.label}
                     {selectedLanguage.code === lang.code && (
-                      <svg
-                        className="w-4 h-4 ml-auto text-green-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
+                      <Image
+                        src={HEADER_IMAGE.ICONS.tick.src}
+                        alt={HEADER_IMAGE.ICONS.tick.alt}
+                        width={16}
+                        height={16}
+                        className="ml-auto"
+                      />
                     )}
                   </button>
                 ))}

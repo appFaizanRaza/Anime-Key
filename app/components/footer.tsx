@@ -1,30 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
 import { COMMON } from "../common/logo";
-import {
-  FaFacebook,
-  FaInstagram,
-  FaLinkedin,
-  FaSnapchat,
-  FaTiktok,
-} from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { SOCIAL_LINKS } from "../constants/social-links";
+import { FOOTER_LINKS } from "../constants/footer";
+import { FOOTER_IMAGES } from "../assets/footer.images";
+import { AUTH_TEXT } from "../constants/label";
 
-const FOOTER_LINKS = [
-  { label: "About Us", href: "/about" },
-  { label: "Privacy Policy", href: "/privacy-policy" },
-  { label: "Disclaimer", href: "/disclaimer" },
-  { label: "Help", href: "/help" },
-];
+{
+  FOOTER_LINKS.map((link) => (
+    <Link key={link.href} href={link.href}>
+      {link.label}
+    </Link>
+  ));
+}
 
-const SOCIAL_LINKS = [
-  { icon: FaFacebook, href: "/facebook" },
-  { icon: FaInstagram, href: "/instagram" },
-  { icon: FaXTwitter, href: "/twitter" },
-  { icon: FaLinkedin, href: "/linkedin" },
-  { icon: FaSnapchat, href: "/snapchat" },
-  { icon: FaTiktok, href: "/tiktok" },
-];
+{
+  SOCIAL_LINKS.map(({ icon: Icon, href }) => (
+    <Link key={href} href={href}>
+      <Icon />
+    </Link>
+  ));
+}
 
 export default function Footer() {
   return (
@@ -47,7 +43,6 @@ export default function Footer() {
                 font-semibold
                 text-[16px]
                 text-white
-                hover:text-accent-green
                 transition
               "
             >
@@ -59,44 +54,49 @@ export default function Footer() {
 
       {/* ⭐ ACCOUNT SOCIAL SECTION */}
       <div className="flex flex-row gap-12">
-      <div className="mt-4">
-        {/* Title */}
-        <h3 className="text-white text-xl font-bold mb-4">Account</h3>
+        <div className="mt-4">
+          {/* Title */}
+          <h3 className="text-white text-xl font-bold mb-4">{AUTH_TEXT.footer.title}</h3>
 
-        {/* Icons Row */}
-        <div className="flex items-center gap-6">
-          {SOCIAL_LINKS.map(({ icon: Icon, href }) => (
-            <a
-              key={href}
-              href={href}
-              className="
+          {/* Icons Row */}
+          <div className="flex items-center gap-6">
+            {SOCIAL_LINKS.map(({ icon: Icon, href }) => (
+              <a
+                key={href}
+                href={href}
+                className="
                 text-white
-                hover:text-accent-green
                 transition
               "
-              aria-label={href}
-            >
-              <Icon size={26} />
-            </a>
-          ))}
+                aria-label={href}
+              >
+                <Icon size={26} />
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="mt-4">
-        {/* Title */}
-        <h3 className="text-white text-xl font-bold mb-4">
-          Download our App
-        </h3>
+        <div className="mt-4">
+          {/* Title */}
+          <h3 className="text-white text-xl font-bold mb-4">
+            {AUTH_TEXT.footer.download}
+          </h3>
 
-        {/* Icons Row */}
-        <div className="flex flex-col">
-          <Image
-            src="/pngegg.png"
-            alt="Google Store"
-            width={200}
-            height={200}
-          />
+          {/* Icons Row */}
+          <div className="flex flex-col space-y-2 ml-6">
+            <Image
+              src="/appstore.svg"
+              alt={FOOTER_IMAGES.ICON.alt}
+              width={120}
+              height={48}
+            />
+            <Image
+              src="/googleplay.svg"
+              alt={FOOTER_IMAGES.ICON.alt}
+              width={120}
+              height={48}
+            />
+          </div>
         </div>
-      </div>
       </div>
     </footer>
   );

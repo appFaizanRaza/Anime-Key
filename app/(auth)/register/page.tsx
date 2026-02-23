@@ -7,6 +7,7 @@ import { REGISTER_IMAGES } from "@/app/constants/register.images";
 import { AUTH_TEXT } from "@/app/constants/label";
 import { LANGUAGES } from "@/app/constants/languages";
 import { useState, useEffect, useRef } from "react";
+import { HEADER_IMAGE } from "@/app/assets/header.images";
 
 export default function RegisterPage() {
   const [isLangOpen, setIsLangOpen] = useState(false);
@@ -48,85 +49,84 @@ export default function RegisterPage() {
 
         {/* Language Selector */}
         <div className="relative" ref={langDropdownRef}>
-          <button
-            onClick={() => setIsLangOpen((p) => !p)}
-            className="
-              flex items-center gap-2
-              text-white text-sm
-              bg-transparent
-              border border-white/30
-              rounded-md
-              px-3 py-2
-              cursor-pointer
-              hover:bg-white/5
-              transition-all
-              min-w-30
-            "
-          >
-            <Image 
-              src="/globe.svg" 
-              alt="language" 
-              width={20} 
-              height={20}
-              className="shrink-0"
-            />
-            <span className="flex-1 text-left">{selectedLanguage.label}</span>
-            <svg
-              className={`w-4 h-4 transition-transform duration-200 ${isLangOpen ? 'rotate-180' : ''}`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-
-          {/* Dropdown Menu */}
-          {isLangOpen && (
-            <div
-              className="
-                absolute top-full right-0 mt-2
-                min-w-30 w-full
-                bg-[#1a1a1a]
-                border border-white/10
-                rounded-md
-                shadow-2xl
-                overflow-hidden
-                z-50
-                animate-fadeIn
-              "
-            >
-              <div className="py-1">
-                {LANGUAGES.map((lang) => (
                   <button
-                    key={lang.code}
-                    onClick={() => handleLanguageSelect(lang)}
-                    className={`
-                      w-full text-left px-4 py-2.5
-                      text-sm text-white
-                      hover:bg-white/10
-                      transition-colors
+                    onClick={() => setIsLangOpen((p) => !p)}
+                    className="
                       flex items-center gap-2
-                      ${selectedLanguage.code === lang.code ? 'bg-white/5' : ''}
-                    `}
+                      text-white text-sm
+                      bg-transparent
+                      border border-white/30
+                      rounded-md
+                      px-3 py-2
+                      cursor-pointer
+                      hover:bg-white/5
+                      transition-all
+                      min-w-[120px]
+                    "
                   >
-                    {lang.label}
-                    {selectedLanguage.code === lang.code && (
-                      <svg
-                        className="w-4 h-4 ml-auto text-green-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    )}
+                    <Image
+                      src={HEADER_IMAGE.LOGO.src}
+                      alt={HEADER_IMAGE.LOGO.alt}
+                      width={20}
+                      height={20}
+                    />
+                    <span className="flex-1 text-left">{selectedLanguage.label}</span>
+                    <Image
+                      src={HEADER_IMAGE.ICONS.dropdown.src}
+                      alt={HEADER_IMAGE.ICONS.dropdown.alt}
+                      width={20}
+                      height={20}
+                      className={`transition-transform duration-200 ${
+                        isLangOpen ? "rotate-180" : ""
+                      }`}
+                    />
                   </button>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
+        
+                  {/* Dropdown Menu */}
+                  {isLangOpen && (
+                    <div
+                      className="
+                        absolute top-full right-0 mt-2
+                        min-w-[120px] w-full
+                        bg-[#1a1a1a]
+                        border border-white/10
+                        rounded-md
+                        shadow-2xl
+                        overflow-hidden
+                        z-50
+                        animate-fadeIn
+                      "
+                    >
+                      <div className="py-1">
+                        {LANGUAGES.map((lang) => (
+                          <button
+                            key={lang.code}
+                            onClick={() => handleLanguageSelect(lang)}
+                            className={`
+                              w-full text-left px-4 py-2.5
+                              text-sm text-white
+                              hover:bg-white/10
+                              transition-colors
+                              flex items-center gap-2
+                              ${selectedLanguage.code === lang.code ? "bg-white/5" : ""}
+                            `}
+                          >
+                            {lang.label}
+                            {selectedLanguage.code === lang.code && (
+                              <Image
+                                src={HEADER_IMAGE.ICONS.tick.src}
+                                alt={HEADER_IMAGE.ICONS.tick.alt}
+                                width={16}
+                                height={16}
+                                className="ml-auto"
+                              />
+                            )}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
       </header>
 
       {/* LEFT IMAGE SECTION (desktop only) */}

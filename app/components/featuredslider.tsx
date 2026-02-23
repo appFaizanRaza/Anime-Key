@@ -1,18 +1,13 @@
 "use client";
 import { useRef } from "react";
 import MovieCard from "./moviecard";
-import { ContentItem } from "../data/apiData";
-
-interface FeaturedSliderProps {
-  title: string;
-  items: ContentItem[];
-  showSeeAll?: boolean;
-}
+import { FeaturedSliderProps } from "../types/components/featuredslider";
 
 export default function FeaturedSlider({
   title,
   items,
   showSeeAll = false,
+  horizontal = false, // 👈 add this
 }: FeaturedSliderProps) {
   const sliderRef = useRef<HTMLDivElement>(null);
 
@@ -22,7 +17,10 @@ export default function FeaturedSlider({
   const scrollByAmount = () => (window.innerWidth < 768 ? 260 : 800);
 
   const scrollLeft = () => {
-    sliderRef.current?.scrollBy({ left: -scrollByAmount(), behavior: "smooth" });
+    sliderRef.current?.scrollBy({
+      left: -scrollByAmount(),
+      behavior: "smooth",
+    });
   };
 
   const scrollRight = () => {
@@ -30,24 +28,38 @@ export default function FeaturedSlider({
   };
 
   return (
-    <section className="relative mx-12 my-8">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-extrabold text-white flex items-center gap-3">
+    <section className="relative px-4 md:px-8 lg:px-12 my-8 w-full">
+      <div className="relative z-20 flex items-center justify-between mb-6">
+        <h2 className="text-[25px] font-extrabold text-white flex items-center gap-3">
           <span className="h-5 w-1 bg-accent-green rounded" />
           {title}
         </h2>
 
         {showSeeAll && (
-          <button className="text-white/80 hover:text-white text-sm">
+          <p
+            className="
+    relative z-20
+    inline-block
+    text-white text-[15px]
+    underline
+    cursor-pointer
+
+    transition-all duration-200 ease-out
+    transform-gpu
+
+    hover:text-text-green
+    hover:scale-110
+    hover:-translate-y-[1px]
+    hover:underline-offset-4
+  "
+          >
             See All
-          </button>
+          </p>
         )}
       </div>
 
       {/* Slider wrapper */}
       <div className="relative">
-
         {/* Left Arrow */}
         {showArrows && (
           <button
@@ -58,7 +70,7 @@ export default function FeaturedSlider({
               z-50 w-16 h-16
               items-center justify-center
               text-white text-[56px]
-              -left-[48px]
+              left-[-48px]
               rounded-full cursor-pointer transition
             "
           >
@@ -66,29 +78,26 @@ export default function FeaturedSlider({
           </button>
         )}
 
-        {/*
-          overflow-x-auto  → enables horizontal scrolling
-          overflow-y-visible → lets hover cards escape vertically without clipping
-          scrollbar-hide   → hides the scrollbar track
-          py-16 -my-16     → creates a vertical "escape hatch" tall enough for the
-                             hover card (which pops up ~55% above the card centre)
-                             without shifting surrounding layout
-        */}
         <div
           ref={sliderRef}
+          onWheel={(e) => {
+            if (window.innerWidth >= 768) e.preventDefault();
+          }}
           className="
-            flex gap-6
-            overflow-x-auto overflow-y-visible
-            scroll-smooth scrollbar-hide
-            px-1 py-16 -my-16
-          "
+    flex
+    gap-3 sm:gap-4 md:gap-5 lg:gap-6
+    overflow-x-auto md:overflow-x-hidden
+    scroll-smooth scrollbar-hide
+    px-2 md:px-4
+    py-16 -my-16
+  "
         >
           {items.map((item, index) => (
             <MovieCard
               key={item.id}
               item={item}
-              isFirst={index === 0}
-              isLast={index === items.length - 1}
+              horizontal={horizontal} // 👈 pass this down
+
             />
           ))}
         </div>
@@ -101,7 +110,7 @@ export default function FeaturedSlider({
               hidden md:flex
               absolute top-1/2 -translate-y-1/2
               z-50 w-16 h-16
-              -right-[48px]
+              right-[-48px]
               items-center justify-center
               text-white text-[56px]
               rounded-full cursor-pointer transition

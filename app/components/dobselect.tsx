@@ -11,23 +11,19 @@ export default function DOBSelect() {
 
   return (
     <div className="flex gap-4 w-full">
-      {/* Day Dropdown */}
       <div className="flex-1">
         <CustomSelect
           placeholder="DD"
           value={day}
           onChange={setDay}
           options={Days.map((d) => ({
-            label: String(d).padStart(2, "0"), // Better UX: 01, 02...
+            label: String(d).padStart(2, "0"),
             value: String(d),
           }))}
         />
       </div>
 
-      {/* Month Dropdown */}
       <div className="flex-[1.5]">
-        {" "}
-        {/* Months need a bit more width */}
         <CustomSelect
           placeholder="MM"
           value={month}
@@ -39,7 +35,6 @@ export default function DOBSelect() {
         />
       </div>
 
-      {/* Year Dropdown */}
       <div className="flex-1">
         <CustomSelect
           placeholder="YYYY"
