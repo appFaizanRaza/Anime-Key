@@ -11,6 +11,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import ReadMore from "./readmore";
+import { HERO_IMAGES } from "../assets/hero.image";
+import { Button } from "./button";
 
 export default function HeroSection({ items }: HeroSectionProps) {
   const [activeModal, setActiveModal] = useState<ContentItem | null>(null);
@@ -36,13 +38,14 @@ export default function HeroSection({ items }: HeroSectionProps) {
 
           return (
             <SwiperSlide key={hero.id}>
-<div className="relative h-[75vh] sm:h-[60vh] md:h-[85vh] lg:h-screen w-full overflow-hidden">                
-              <Image
+              <div className="relative h-[75vh] sm:h-[60vh] md:h-[85vh] lg:h-screen w-full overflow-hidden">
+                <Image
                   src={bgUrl}
                   alt={hero.title}
                   fill
                   priority
-className="object-cover object-[80%_center] md:object-right"                />
+                  className="object-cover object-[80%_center] md:object-right"
+                />
 
                 <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-transparent" />
                 <div className="absolute bottom-0 left-0 w-full h-56 bg-gradient-to-t from-black via-black/70 to-transparent" />
@@ -66,8 +69,8 @@ className="object-cover object-[80%_center] md:object-right"                />
                   <div className="flex items-center gap-2 text-white text-lg">
                     <span>{hero.imdb}</span>
                     <Image
-                      src="/star.png"
-                      alt="Star"
+                      src={HERO_IMAGES.STAR.src}
+                      alt={HERO_IMAGES.STAR.alt}
                       width={120}
                       height={120}
                     />
@@ -96,12 +99,15 @@ className="object-cover object-[80%_center] md:object-right"                />
       {activeModal && (
         <div className="fixed inset-0 z-[99999] bg-black/60 flex items-center justify-center">
           <div className="relative w-[90%] md:w-[650px] max-h-[85vh] bg-zinc-900 rounded-2xl p-6 shadow-2xl overflow-y-auto">
-            <button
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={() => setActiveModal(null)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-white text-xl"
+              aria-label="Close modal"
+              className="absolute top-4 right-4 text-gray-400 text-xl"
             >
               ✕
-            </button>
+            </Button>
             <div className="space-y-6">
               <h2 className="text-2xl font-bold text-white mb-6">
                 {activeModal.title}

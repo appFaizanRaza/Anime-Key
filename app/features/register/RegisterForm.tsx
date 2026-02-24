@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Input from "@/app/components/input";
-import Button from "@/app/components/button";
+import { Button } from "@/app/components/button";
 import { registerSchema } from "./register.schema";
 import { RegisterFormData } from "./register.types";
 import { AUTH_TEXT } from "../../constants/label";
@@ -81,14 +81,12 @@ export default function RegisterForm() {
       >
         {error && <div className="text-red-500 text-sm">{error}</div>}
 
-        {/* Email */}
         <Input
           {...register("email")}
           placeholder={AUTH_TEXT.register.emailLabel}
           error={errors.email?.message}
         />
 
-        {/* Phone */}
         <Input
           {...register("phone")}
           placeholder={AUTH_TEXT.register.phoneLabel}
@@ -116,7 +114,6 @@ export default function RegisterForm() {
           }
         />
 
-        {/* First / Last Name */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input
             {...register("firstName")}
@@ -131,7 +128,6 @@ export default function RegisterForm() {
           />
         </div>
 
-        {/* Password */}
         <Input
           {...register("password")}
           type={showPassword ? "text" : "password"}
@@ -147,7 +143,6 @@ export default function RegisterForm() {
           onRightIconClick={() => setShowPassword((p) => !p)}
         />
 
-        {/* Confirm Password */}
         <Input
           {...register("confirmPassword")}
           type={showConfirmPassword ? "text" : "password"}
@@ -163,7 +158,6 @@ export default function RegisterForm() {
           onRightIconClick={() => setShowConfirmPassword((p) => !p)}
         />
 
-        {/* DOB */}
         <div className="flex">
           <DOBSelect />
         </div>
@@ -182,15 +176,10 @@ export default function RegisterForm() {
             </span>
           </label>
 
-          {/* Submit */}
-          <Button
-            disabled={isLoading}
-            className="w-full py-3 bg-button text-white font-medium rounded-md"
-          >
+          <Button variant="primary" size="lg" fullWidth disabled={isLoading}>
             {isLoading ? "Registering..." : AUTH_TEXT.register.submitButton}
           </Button>
 
-          {/* Footer */}
           <p className="text-login">
             {AUTH_TEXT.register.hasAccount}{" "}
             <Link
@@ -202,7 +191,6 @@ export default function RegisterForm() {
           </p>
         </div>
 
-        {/* Terms */}
       </form>
     </>
   );

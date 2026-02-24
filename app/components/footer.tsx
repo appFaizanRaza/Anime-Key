@@ -25,7 +25,6 @@ import { AUTH_TEXT } from "../constants/label";
 export default function Footer() {
   return (
     <footer className="w-full p-4 bg-black mt-8 hidden justify-between md:block md:flex">
-      {/* Logo + Links (UNCHANGED) */}
       <div className="flex items-center gap-6">
         <Image
           src={COMMON.LOGO.src}
@@ -55,10 +54,10 @@ export default function Footer() {
       {/* ⭐ ACCOUNT SOCIAL SECTION */}
       <div className="flex flex-row gap-12">
         <div className="mt-4">
-          {/* Title */}
-          <h3 className="text-white text-xl font-bold mb-4">{AUTH_TEXT.footer.title}</h3>
+          <h3 className="text-white text-xl font-bold mb-4">
+            {AUTH_TEXT.footer.title}
+          </h3>
 
-          {/* Icons Row */}
           <div className="flex items-center gap-6">
             {SOCIAL_LINKS.map(({ icon: Icon, href }) => (
               <a
@@ -76,22 +75,20 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-4">
-          {/* Title */}
           <h3 className="text-white text-xl font-bold mb-4">
             {AUTH_TEXT.footer.download}
           </h3>
 
-          {/* Icons Row */}
           <div className="flex flex-col space-y-2 ml-6">
             <Image
-              src="/appstore.svg"
-              alt={FOOTER_IMAGES.ICON.alt}
+              src={FOOTER_IMAGES.ICON.Apple.src}
+              alt={FOOTER_IMAGES.ICON.Apple.alt}
               width={120}
               height={48}
             />
             <Image
-              src="/googleplay.svg"
-              alt={FOOTER_IMAGES.ICON.alt}
+              src={FOOTER_IMAGES.ICON.Google.src}
+              alt={FOOTER_IMAGES.ICON.Google.alt}
               width={120}
               height={48}
             />

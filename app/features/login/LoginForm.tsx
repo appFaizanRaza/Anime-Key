@@ -8,7 +8,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
-import Button from "@/app/components/button";
+import { Button } from "@/app/components/button";
 import Input from "@/app/components/input";
 import { AUTH_TEXT } from "@/app/constants/label";
 import { COUNTRY_CODES } from "@/app/constants/countrycode";
@@ -123,8 +123,10 @@ export default function LoginForm() {
 
       <Button
         type="submit"
+        variant="primary"
+        size="lg"
+        fullWidth
         disabled={isLoading}
-        className="w-full py-3 rounded-lg bg-button font-semibold"
       >
         {isLoading ? "Logging in..." : AUTH_TEXT.login.submitButton}
       </Button>
@@ -144,8 +146,10 @@ export default function LoginForm() {
 
       <Button
         type="button"
+        variant="secondary"
+        size="lg"
+        fullWidth
         onClick={() => signIn("google", { callbackUrl: "/" })}
-        className="w-full bg-white py-3"
         icon={<FcGoogle size={20} />}
       >
         <span className="text-google font-roboto">

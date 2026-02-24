@@ -2,6 +2,10 @@
 import { useRef } from "react";
 import MovieCard from "./moviecard";
 import { FeaturedSliderProps } from "../types/components/featuredslider";
+import { AUTH_TEXT } from "../constants/label";
+import Image from "next/image";
+import { HOMEPAGE } from "../assets/homepage";
+import { Button } from "./button";
 
 export default function FeaturedSlider({
   title,
@@ -53,7 +57,7 @@ export default function FeaturedSlider({
     hover:underline-offset-4
   "
           >
-            See All
+            {AUTH_TEXT.homepage.seeall}
           </p>
         )}
       </div>
@@ -62,20 +66,24 @@ export default function FeaturedSlider({
       <div className="relative">
         {/* Left Arrow */}
         {showArrows && (
-          <button
-            onClick={scrollLeft}
-            className="
-              hidden md:flex
-              absolute top-1/2 -translate-y-1/2
-              z-50 w-16 h-16
-              items-center justify-center
-              text-white text-[56px]
-              left-[-48px]
-              rounded-full cursor-pointer transition
-            "
-          >
-            ‹
-          </button>
+ <Button
+  variant="ghost"
+  size="icon"
+  onClick={scrollLeft}
+  className="
+    hidden md:flex
+    absolute top-1/2 -translate-y-1/2
+    left-2 md:left-[-36px]
+    z-50
+  "
+>
+            <Image
+              src={HOMEPAGE.leftarrow.src}
+              alt={HOMEPAGE.leftarrow.alt}
+              width={60}
+              height={30} /* Ensure the arrow is visible */
+            />
+          </Button>
         )}
 
         <div
@@ -97,27 +105,30 @@ export default function FeaturedSlider({
               key={item.id}
               item={item}
               horizontal={horizontal} // 👈 pass this down
-
             />
           ))}
         </div>
 
         {/* Right Arrow */}
         {showArrows && (
-          <button
-            onClick={scrollRight}
-            className="
-              hidden md:flex
-              absolute top-1/2 -translate-y-1/2
-              z-50 w-16 h-16
-              right-[-48px]
-              items-center justify-center
-              text-white text-[56px]
-              rounded-full cursor-pointer transition
-            "
-          >
-            ›
-          </button>
+<Button
+  variant="ghost"
+  size="icon"
+  onClick={scrollRight}
+  className="
+    hidden md:flex
+    absolute top-1/2 -translate-y-1/2
+    right-2 md:right-[-36px]
+    z-50
+  "
+>
+            <Image
+              src={HOMEPAGE.rightarrow.src}
+              alt={HOMEPAGE.rightarrow.alt}
+              width={60}
+              height={30}
+            />
+          </Button>
         )}
       </div>
     </section>

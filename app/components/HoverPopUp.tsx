@@ -2,15 +2,10 @@
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import ReadMore from "./readmore";
-import { ContentItem } from "../data/apiData";
-
-interface HoverPopupProps {
-  rect: DOMRect | null;
-  item: ContentItem;
-  horizontalPoster: string;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
-}
+import { HoverPopupProps } from "../types/components/hoverPopUp";
+import { HOVER_POPUP_IMAGES } from "../assets/hoverPopUp.images";
+import { AUTH_TEXT } from "../constants/label";
+import { Button } from "./button";
 
 export default function HoverPopup({
   rect,
@@ -59,39 +54,28 @@ export default function HoverPopup({
 
         <div className="px-4 mt-6 space-y-4 text-white pb-4">
           <div className="flex gap-2">
-            <button
-              className="
-    flex items-center justify-center gap-2
-    flex-1
-    bg-text-green text-white
-    py-2.5 rounded-lg font-semibold
-    transition-shadow duration-[400ms] ease-in-out
-    hover:shadow-[0px_5px_15px_rgba(113,199,4,1)]
-    cursor-pointer
-  "
-            >
-              <svg viewBox="0 0 24 24" className="w-5 h-5" fill="#FFFFFF">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-              Watch Now
-            </button>
-
-            <button
+            <Button variant="primary" size="md" className="flex-1 py-2.5">
+              <Image
+                src={HOVER_POPUP_IMAGES.PLAY.src}
+                alt={HOVER_POPUP_IMAGES.PLAY.alt}
+                width={20}
+                height={20}
+              />
+              {AUTH_TEXT.hoverpopup.watchNow}
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
               aria-label="Add to Watchlist"
-              className="
-              w-11 h-11
-              rounded-lg
-              bg-white/10
-              flex items-center justify-center
-              transition
-              hover:bg-white/20
-              cursor-pointer
-            "
+              className="w-11 h-11 rounded-lg bg-text-green/20 hover:bg-black/20"
             >
-              <svg viewBox="0 0 24 24" className="w-6 h-6" fill="#FFFFFF">
-                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z" />
-              </svg>
-            </button>
+              <Image
+                src={HOVER_POPUP_IMAGES.WATCHLIST.src}
+                alt={HOVER_POPUP_IMAGES.WATCHLIST.alt}
+                width={24}
+                height={24}
+              />
+            </Button>
           </div>
 
           <p className="text-md font-bold">

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { COUNTRY_CODES } from "@/app/constants/countrycode";
+import { Button } from "./button";
 
 export default function CountryCodeDropdown({
   value,
@@ -25,22 +26,14 @@ export default function CountryCodeDropdown({
   return (
     <div ref={ref} className="relative">
       {/* Trigger */}
-      <button
+      <Button
         type="button"
+        variant="underline"
+        size="none"
         onClick={() => setOpen((p) => !p)}
-        className="
-          bg-transparent
-          text-black
-          text-md
-          border-b-2
-          border-lime-500
-          pr-5
-          cursor-pointer
-          outline-none
-        "
       >
         {value}
-      </button>
+      </Button>
 
       {/* Dropdown */}
       {open && (

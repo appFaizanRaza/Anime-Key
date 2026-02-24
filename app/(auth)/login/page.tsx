@@ -8,6 +8,7 @@ import { AUTH_TEXT } from "@/app/constants/label";
 import { LANGUAGES } from "@/app/constants/languages";
 import { useState, useEffect, useRef } from "react";
 import { HEADER_IMAGE } from "@/app/assets/header.images";
+import { Button } from "@/app/components/button";
 
 export default function LoginPage() {
   const [isLangOpen, setIsLangOpen] = useState(false);
@@ -40,8 +41,8 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="relative w-full min-h-screen flex">
-      <header className="absolute z-20 w-full h-16 flex items-center justify-between px-6">
+    <div className="relative w-full min-h-screen flex flex-col md:flex-row">
+      <header className="absolute z-20 w-full h-16 flex items-center justify-between px-6 sm:px-6 md:px-8 pt-safe">
         <Image
           src={COMMON.LOGO.src}
           alt={COMMON.LOGO.alt}
@@ -51,20 +52,10 @@ export default function LoginPage() {
 
         {/* Language Selector */}
         <div className="relative" ref={langDropdownRef}>
-          <button
+          <Button
+            variant="outline"
+            size="sm"
             onClick={() => setIsLangOpen((p) => !p)}
-            className="
-              flex items-center gap-2
-              text-white text-sm
-              bg-transparent
-              border border-white/30
-              rounded-md
-              px-3 py-2
-              cursor-pointer
-              hover:bg-white/5
-              transition-all
-              min-w-[120px]
-            "
           >
             <Image
               src={HEADER_IMAGE.LOGO.src}
@@ -82,7 +73,7 @@ export default function LoginPage() {
                 isLangOpen ? "rotate-180" : ""
               }`}
             />
-          </button>
+          </Button>
 
           {/* Dropdown Menu */}
           {isLangOpen && (
@@ -101,17 +92,12 @@ export default function LoginPage() {
             >
               <div className="py-1">
                 {LANGUAGES.map((lang) => (
-                  <button
+                  <Button
                     key={lang.code}
+                    variant="menu"
+                    size="sm"
                     onClick={() => handleLanguageSelect(lang)}
-                    className={`
-                      w-full text-left px-4 py-2.5
-                      text-sm text-white
-                      hover:bg-white/10
-                      transition-colors
-                      flex items-center gap-2
-                      ${selectedLanguage.code === lang.code ? "bg-white/5" : ""}
-                    `}
+                    className={`${selectedLanguage.code === lang.code ? "bg-white/5" : ""}`}
                   >
                     {lang.label}
                     {selectedLanguage.code === lang.code && (
@@ -123,7 +109,7 @@ export default function LoginPage() {
                         className="ml-auto"
                       />
                     )}
-                  </button>
+                  </Button>
                 ))}
               </div>
             </div>
@@ -131,11 +117,27 @@ export default function LoginPage() {
         </div>
       </header>
 
-      <div className="w-full md:w-1/2 flex flex-col bg-background">
+      <div
+        className="w-full md:w-1/2 flex flex-col bg-background px-4 sm:px-6 md:px-10
+    pt-24 md:pt-0
+    pb-8"
+      >
         {/* CONTENT */}
         <div className="flex flex-1 items-center justify-center">
-          <div className="w-full max-w-xl space-y-5">
-            <h1 className="font-semibold font-heading text-hero">
+          <div
+            className="
+    w-full max-w-md md:max-w-xl
+    space-y-6 md:space-y-5
+  "
+          >
+            <h1
+              className="
+    font-semibold font-heading
+    text-3xl md:text-hero
+    leading-tight
+  "
+            >
+              {" "}
               {AUTH_TEXT.login.title}
             </h1>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ContentItem, getImage, FALLBACK_IMG } from "../data/apiData";
+import { getImage, FALLBACK_IMG } from "../data/apiData";
 import { TopFiveSliderProps } from "../types/components/topslider";
 
 export default function TopFiveSlider({ title, items }: TopFiveSliderProps) {

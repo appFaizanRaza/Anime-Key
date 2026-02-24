@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Option } from "../types/components/customselect";
+import { HOMEPAGE } from "../assets/homepage";
 
 export default function CustomSelect({
   placeholder,
@@ -62,8 +63,8 @@ export default function CustomSelect({
           }`}
         >
           <Image
-            src="/icons/arrow-dropdown.svg"
-            alt="Arrow"
+            src={HOMEPAGE.arrow.src}
+            alt={HOMEPAGE.arrow.alt}
             width={24}
             height={24}
           />

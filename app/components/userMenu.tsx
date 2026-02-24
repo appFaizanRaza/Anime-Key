@@ -1,12 +1,9 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-
-interface UserMenuProps {
-  name?: string;
-  avatarUrl?: string;
-  onLogout?: () => void;
-}
+import { UserMenuProps } from "@/app/types/components/usermenu";
+import { AUTH_TEXT } from "../constants/label";
+import { Button } from "./button";
 
 export default function UserMenu({
   name = "User",
@@ -16,7 +13,6 @@ export default function UserMenu({
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       if (!menuRef.current?.contains(e.target as Node)) {
@@ -32,10 +28,16 @@ export default function UserMenu({
 
   return (
     <div ref={menuRef} className="relative mr-8">
-      {/* Avatar Button */}
-      <button
+      <Button
+        variant="outline"
+        size="sm"
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 border border-text-green rounded-2xl px-2 cursor-pointer transition-all duration-200 hover:bg-text-green/30"
+        className="
+    border-text-green
+    rounded-2xl
+    px-2
+    hover:bg-text-green/30
+  "
       >
         {avatarUrl ? (
           <img
@@ -48,12 +50,8 @@ export default function UserMenu({
             {initial}
           </div>
         )}
-
-        {/* Caret */}
         <span className="text-white text-sm">▾</span>
-      </button>
-
-      {/* Dropdown */}
+      </Button>
       {open && (
         <div
           className="
@@ -64,26 +62,23 @@ export default function UserMenu({
             z-50
           "
         >
-          <button className="w-full text-left px-4 py-2 hover:bg-zinc-800 text-white">
-            Profile
-          </button>
+          <Button variant="menu" size="sm">
+            {AUTH_TEXT.usermenu.profile}
+          </Button>
 
-          <button className="w-full text-left px-4 py-2 hover:bg-zinc-800 text-white">
-            Watchlist
-          </button>
+          <Button variant="menu" size="sm">
+            {AUTH_TEXT.usermenu.watchlist}
+          </Button>
 
-          <button className="w-full text-left px-4 py-2 hover:bg-zinc-800 text-white">
-            Settings
-          </button>
+          <Button variant="menu" size="sm">
+            {AUTH_TEXT.usermenu.settings}
+          </Button>
 
           <hr className="my-2 border-zinc-700" />
 
-          <button
-            onClick={onLogout}
-            className="w-full text-left px-4 py-2 hover:bg-zinc-800 text-red-400"
-          >
-            Logout
-          </button>
+          <Button variant="danger" size="sm" onClick={onLogout}>
+            {AUTH_TEXT.usermenu.logout}
+          </Button>
         </div>
       )}
     </div>
