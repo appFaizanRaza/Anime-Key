@@ -25,5 +25,14 @@
     "firstName": "Faizan",
     "lastName": "loveleesha@app.com",
     "dob": ""
+  },
+  {
+    "id": 4,
+    "email": "rahulgandhi@gmail.com",
+    "phone": "6207654321",
+    "password": "Welcome@92",
+    "firstName": "Rahul",
+    "lastName": "Gandhi",
+    "dob": ""
   }
 ]

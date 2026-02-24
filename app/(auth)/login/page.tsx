@@ -8,13 +8,12 @@ import { AUTH_TEXT } from "@/app/constants/label";
 import { LANGUAGES } from "@/app/constants/languages";
 import { useState, useEffect, useRef } from "react";
 import { HEADER_IMAGE } from "@/app/assets/header.images";
-
+import { Button } from "@/app/components/button";
 
 export default function LoginPage() {
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState(LANGUAGES[0]);
   const langDropdownRef = useRef<HTMLDivElement>(null);
- 
 
   // Close language dropdown when clicking outside
   useEffect(() => {
@@ -41,7 +40,6 @@ export default function LoginPage() {
     setIsLangOpen(false);
   };
 
-
   return (
     <div className="relative w-full min-h-screen flex flex-col md:flex-row">
       <header className="absolute z-20 w-full h-16 flex items-center justify-between px-6 sm:px-6 md:px-8 pt-safe">
@@ -54,20 +52,10 @@ export default function LoginPage() {
 
         {/* Language Selector */}
         <div className="relative" ref={langDropdownRef}>
-          <button
+          <Button
+            variant="outline"
+            size="sm"
             onClick={() => setIsLangOpen((p) => !p)}
-            className="
-              flex items-center gap-2
-              text-white text-sm
-              bg-transparent
-              border border-white/30
-              rounded-md
-              px-3 py-2
-              cursor-pointer
-              hover:bg-white/5
-              transition-all
-              min-w-[120px]
-            "
           >
             <Image
               src={HEADER_IMAGE.LOGO.src}
@@ -85,7 +73,7 @@ export default function LoginPage() {
                 isLangOpen ? "rotate-180" : ""
               }`}
             />
-          </button>
+          </Button>
 
           {/* Dropdown Menu */}
           {isLangOpen && (
@@ -104,17 +92,12 @@ export default function LoginPage() {
             >
               <div className="py-1">
                 {LANGUAGES.map((lang) => (
-                  <button
+                  <Button
                     key={lang.code}
+                    variant="menu"
+                    size="sm"
                     onClick={() => handleLanguageSelect(lang)}
-                    className={`
-                      w-full text-left px-4 py-2.5
-                      text-sm text-white
-                      hover:bg-white/10
-                      transition-colors
-                      flex items-center gap-2
-                      ${selectedLanguage.code === lang.code ? "bg-white/5" : ""}
-                    `}
+                    className={`${selectedLanguage.code === lang.code ? "bg-white/5" : ""}`}
                   >
                     {lang.label}
                     {selectedLanguage.code === lang.code && (
@@ -126,7 +109,7 @@ export default function LoginPage() {
                         className="ml-auto"
                       />
                     )}
-                  </button>
+                  </Button>
                 ))}
               </div>
             </div>

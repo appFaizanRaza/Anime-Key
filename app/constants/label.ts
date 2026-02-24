@@ -1,3 +1,5 @@
+import { read, watch } from "fs";
+
 export const AUTH_TEXT = {
   login: {
     title: "Welcome Back",
@@ -37,5 +39,20 @@ export const AUTH_TEXT = {
   footer: {
     title: "Account",
     download: "Download Our App",
+  },
+
+  hoverpopup: {
+    watchNow: "Watch Now",
+  },
+
+  readmore: {
+    readMore: "Read More",
+  },
+
+  usermenu: {
+    profile: "Profile",
+    watchlist: "Watchlist",
+    settings: "Settings",
+    logout: "Logout",
   },
 };

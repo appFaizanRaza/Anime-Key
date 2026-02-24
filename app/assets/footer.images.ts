@@ -1,8 +1,14 @@
 export const FOOTER_IMAGES = {
   ICON: {
-    src: "/pngegg.png",
-    alt: "Store Icon",
-  },
+    Apple: {
+      src: "/appstore.svg",
+      alt: "Apple Store Icon",
+    },
+    Google: {
+      src: "/googleplay.svg",
+      alt: "Google Play Store Icon",
+    }
+  }
 };
 
 

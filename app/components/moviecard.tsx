@@ -2,12 +2,8 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import HoverPopup from "./HoverPopUp";
-import { getImage, FALLBACK_IMG, ContentItem } from "../data/apiData";
-
-interface MovieCardProps {
-  item: ContentItem;
-  horizontal?: boolean;
-}
+import { getImage, FALLBACK_IMG } from "../data/apiData";
+import { MovieCardProps } from "../types/components/moviecard";
 
 export default function MovieCard({
   item,
@@ -61,7 +57,7 @@ export default function MovieCard({
       className={`relative shrink-0 ${
         horizontal
           ? "w-[70%] sm:w-[50%] md:w-[40%] lg:w-[25%] xl:w-[18%]"
-          : "w-[48%] sm:w-[45%] md:w-[30%] lg:w-[18%] xl:w-[13.5%]"
+          : "w-[48%] sm:w-[45%] md:w-[30%] lg:w-[18%] xl:w-[13.1%]"
       }`}
     >
       <div onMouseEnter={showPopup} onMouseLeave={hidePopup}>

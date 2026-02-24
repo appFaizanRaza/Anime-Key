@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ReadMoreProps } from "../types/components/readmore";
+import { AUTH_TEXT } from "../constants/label";
 
 export default function ReadMore({
   text,
@@ -49,11 +50,11 @@ export default function ReadMore({
         <>
           {href ? (
             <Link href={href} className={linkClassName}>
-              Read More
+             {AUTH_TEXT.readmore.readMore}
             </Link>
           ) : (
             <span onClick={onOpen} className={linkClassName}>
-              Read More
+              {AUTH_TEXT.readmore.readMore}
             </span>
           )}
         </>

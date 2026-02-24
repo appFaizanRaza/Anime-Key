@@ -13,6 +13,7 @@ import { HEADER_IMAGE } from "../assets/header.images";
 import { AUTH_TEXT } from "../constants/label";
 import { ROUTES } from "../shared/routes/app.route";
 import UserMenu from "./userMenu";
+import { Button } from "./button";
 
 export default function Header() {
   const pathname = usePathname();
@@ -123,28 +124,21 @@ export default function Header() {
             </div>
           )}
           <div className="flex items-center">
-            <button
-              aria-label="Search"
-              className="p-2 rounded-full hover:bg-white/10 transition-colors"
-            >
+            <Button variant="ghost" size="icon" aria-label="Search">
               <SearchIcon className="w-6 h-6 text-white" />
-            </button>
+            </Button>
             <div className="" ref={langDropdownRef}>
-              <button
-                onClick={() => setIsLangOpen((p) => !p)}
+              <Button
+                variant="outline"
+                size="sm"
                 aria-label="Select language"
+                onClick={() => setIsLangOpen((p) => !p)}
                 className="
-  flex items-center justify-center md:justify-start
-  gap-1 md:gap-2
-  h-[36px]
-  px-3 md:px-3
-  rounded-sm
-  border border-white  
-  text-white text-sm font-medium
-  transition-colors
-  cursor-pointer
-  min-w-[48px] md:min-w-[120px]
-"
+    h-[36px]
+    min-w-[48px] md:min-w-[120px]
+    justify-center md:justify-start
+    gap-1 md:gap-2
+  "
               >
                 <Image
                   src={HEADER_IMAGE.LOGO.src}
@@ -166,7 +160,7 @@ export default function Header() {
                     isLangOpen ? "rotate-180" : ""
                   }`}
                 />
-              </button>
+              </Button>
 
               <div
                 className={`
@@ -185,21 +179,14 @@ export default function Header() {
               >
                 <div className="py-1">
                   {LANGUAGES.map((lang) => (
-                    <button
+                    <Button
                       key={lang.code}
+                      variant="menu"
+                      size="sm"
                       onClick={() => handleLanguageSelect(lang)}
-                      className={`
-                        w-full text-left px-2 py-2.5
-                        text-sm text-white
-                        hover:bg-white/10
-                        transition-colors
-                        flex items-center gap-2
-                        ${
-                          selectedLanguage.code === lang.code
-                            ? "bg-white/5"
-                            : ""
-                        }
-                      `}
+                      className={
+                        selectedLanguage.code === lang.code ? "bg-white/5" : ""
+                      }
                     >
                       {lang.label}
 
@@ -212,7 +199,7 @@ export default function Header() {
                           className="ml-auto"
                         />
                       )}
-                    </button>
+                    </Button>
                   ))}
                 </div>
               </div>

@@ -8,6 +8,7 @@ import { AUTH_TEXT } from "@/app/constants/label";
 import { LANGUAGES } from "@/app/constants/languages";
 import { useState, useEffect, useRef } from "react";
 import { HEADER_IMAGE } from "@/app/assets/header.images";
+import { Button } from "@/app/components/button";
 
 export default function RegisterPage() {
   const [isLangOpen, setIsLangOpen] = useState(false);
@@ -55,20 +56,10 @@ export default function RegisterPage() {
 
         {/* Language Selector */}
         <div className="relative" ref={langDropdownRef}>
-          <button
+          <Button
+            variant="outline"
+            size="sm"
             onClick={() => setIsLangOpen((p) => !p)}
-            className="
-                      flex items-center gap-2
-                      text-white text-sm
-                      bg-transparent
-                      border border-white/30
-                      rounded-md
-                      px-3 py-2
-                      cursor-pointer
-                      hover:bg-white/5
-                      transition-all
-                      min-w-[120px]
-                    "
           >
             <Image
               src={HEADER_IMAGE.LOGO.src}
@@ -82,11 +73,10 @@ export default function RegisterPage() {
               alt={HEADER_IMAGE.ICONS.dropdown.alt}
               width={20}
               height={20}
-              className={`transition-transform duration-200 ${
-                isLangOpen ? "rotate-180" : ""
-              }`}
+              className={`transition-transform duration-200 ${isLangOpen ? "rotate-180" : ""
+                }`}
             />
-          </button>
+          </Button>
 
           {/* Dropdown Menu */}
           {isLangOpen && (
@@ -105,15 +95,13 @@ export default function RegisterPage() {
             >
               <div className="py-1">
                 {LANGUAGES.map((lang) => (
-                  <button
+                  <Button
+                    variant="menu"
+                    size="sm"
                     key={lang.code}
                     onClick={() => handleLanguageSelect(lang)}
                     className={`
-                              w-full text-left px-4 py-2.5
-                              text-sm text-white
-                              hover:bg-white/10
-                              transition-colors
-                              flex items-center gap-2
+                              
                               ${selectedLanguage.code === lang.code ? "bg-white/5" : ""}
                             `}
                   >
@@ -124,10 +112,9 @@ export default function RegisterPage() {
                         alt={HEADER_IMAGE.ICONS.tick.alt}
                         width={16}
                         height={16}
-                        className="ml-auto"
                       />
                     )}
-                  </button>
+                  </Button>
                 ))}
               </div>
             </div>

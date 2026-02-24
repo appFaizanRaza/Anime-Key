@@ -1,6 +1,7 @@
 import React from "react";
 import { cn } from "@/app/lib/utils";
 import { InputProps } from "../types/components/input";
+import { Button } from "./button";
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
@@ -47,13 +48,15 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
           {/* RIGHT ICON */}
           {rightIcon && (
-            <button
-              type="button"
-              onClick={onRightIconClick}
-              className="px-3 text-gray-600 hover:text-black"
-            >
+            <Button
+  type="button"
+  variant="ghost"
+  size="sm"
+  onClick={onRightIconClick}
+  className="px-3 text-gray-600 hover:text-black rounded-none"
+>
               {rightIcon}
-            </button>
+            </Button>
           )}
         </div>
 
