@@ -2,6 +2,8 @@
 import { useRef } from "react";
 import MovieCard from "./moviecard";
 import { FeaturedSliderProps } from "../types/components/featuredslider";
+import { AUTH_TEXT } from "../constants/label";
+import Image from "next/image";
 
 export default function FeaturedSlider({
   title,
@@ -53,7 +55,7 @@ export default function FeaturedSlider({
     hover:underline-offset-4
   "
           >
-            See All
+            {AUTH_TEXT.homepage.seeall}
           </p>
         )}
       </div>
@@ -63,19 +65,27 @@ export default function FeaturedSlider({
         {/* Left Arrow */}
         {showArrows && (
           <button
-            onClick={scrollLeft}
-            className="
-              hidden md:flex
-              absolute top-1/2 -translate-y-1/2
-              z-50 w-16 h-16
-              items-center justify-center
-              text-white text-[56px]
-              left-[-48px]
-              rounded-full cursor-pointer transition
-            "
-          >
-            ‹
-          </button>
+  onClick={scrollLeft}
+  className="
+    hidden md:flex
+    absolute top-1/2 -translate-y-1/2
+    z-50
+    items-center justify-center
+    left-[-42px]
+    w-24 h-24           /* Bigger clickable area */
+    rounded-full
+    cursor-pointer
+    transition
+    hover:bg-white/10   /* Optional hover effect */
+  "
+>
+  <Image
+    src="/leftarrow.svg"
+    alt="Left Arrow"
+    width={30}
+    height={30}         /* Ensure the arrow is visible */
+  />
+</button>
         )}
 
         <div

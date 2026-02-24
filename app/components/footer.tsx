@@ -55,10 +55,10 @@ export default function Footer() {
       {/* ⭐ ACCOUNT SOCIAL SECTION */}
       <div className="flex flex-row gap-12">
         <div className="mt-4">
-          {/* Title */}
+         
           <h3 className="text-white text-xl font-bold mb-4">{AUTH_TEXT.footer.title}</h3>
 
-          {/* Icons Row */}
+       
           <div className="flex items-center gap-6">
             {SOCIAL_LINKS.map(({ icon: Icon, href }) => (
               <a
@@ -76,12 +76,11 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-4">
-          {/* Title */}
+
           <h3 className="text-white text-xl font-bold mb-4">
             {AUTH_TEXT.footer.download}
           </h3>
 
-          {/* Icons Row */}
           <div className="flex flex-col space-y-2 ml-6">
             <Image
               src="/appstore.svg"

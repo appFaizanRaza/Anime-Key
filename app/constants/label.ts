@@ -31,6 +31,7 @@ export const AUTH_TEXT = {
   homepage: {
     register: "Register",
     login: "Login",
+    seeall: "See All",
   },
 
   footer: {

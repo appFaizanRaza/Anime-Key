@@ -9,10 +9,12 @@ import { LANGUAGES } from "@/app/constants/languages";
 import { useState, useEffect, useRef } from "react";
 import { HEADER_IMAGE } from "@/app/assets/header.images";
 
+
 export default function LoginPage() {
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState(LANGUAGES[0]);
   const langDropdownRef = useRef<HTMLDivElement>(null);
+ 
 
   // Close language dropdown when clicking outside
   useEffect(() => {
@@ -39,9 +41,10 @@ export default function LoginPage() {
     setIsLangOpen(false);
   };
 
+
   return (
-    <div className="relative w-full min-h-screen flex">
-      <header className="absolute z-20 w-full h-16 flex items-center justify-between px-6">
+    <div className="relative w-full min-h-screen flex flex-col md:flex-row">
+      <header className="absolute z-20 w-full h-16 flex items-center justify-between px-6 sm:px-6 md:px-8 pt-safe">
         <Image
           src={COMMON.LOGO.src}
           alt={COMMON.LOGO.alt}
@@ -131,11 +134,27 @@ export default function LoginPage() {
         </div>
       </header>
 
-      <div className="w-full md:w-1/2 flex flex-col bg-background">
+      <div
+        className="w-full md:w-1/2 flex flex-col bg-background px-4 sm:px-6 md:px-10
+    pt-24 md:pt-0
+    pb-8"
+      >
         {/* CONTENT */}
         <div className="flex flex-1 items-center justify-center">
-          <div className="w-full max-w-xl space-y-5">
-            <h1 className="font-semibold font-heading text-hero">
+          <div
+            className="
+    w-full max-w-md md:max-w-xl
+    space-y-6 md:space-y-5
+  "
+          >
+            <h1
+              className="
+    font-semibold font-heading
+    text-3xl md:text-hero
+    leading-tight
+  "
+            >
+              {" "}
               {AUTH_TEXT.login.title}
             </h1>
 

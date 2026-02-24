@@ -1,12 +1,8 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { UserMenuProps } from "@/app/types/components/usermenu"
 
-interface UserMenuProps {
-  name?: string;
-  avatarUrl?: string;
-  onLogout?: () => void;
-}
 
 export default function UserMenu({
   name = "User",
