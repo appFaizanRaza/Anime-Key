@@ -23,7 +23,7 @@ export default function DOBSelect() {
         />
       </div>
 
-      <div className="flex-[1.5]">
+      <div className="flex-1">
         <CustomSelect
           placeholder="MM"
           value={month}

@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Option } from "../types/components/customselect";
-import { HOMEPAGE } from "../assets/homepage";
+import { HEADER_IMAGE } from "../assets/header.images";
 
 export default function CustomSelect({
   placeholder,
@@ -33,9 +33,6 @@ export default function CustomSelect({
 
   return (
     <div ref={ref} className="relative w-full">
-      {" "}
-      {/* Parent remains relative */}
-      {/* Trigger */}
       <div
         onClick={() => setOpen(!open)}
         className="
@@ -55,22 +52,17 @@ export default function CustomSelect({
         <span className="text-black text-md">
           {selected ? selected.label : placeholder}
         </span>
-
-        {/* Arrow - Rotates when open */}
         <div
-          className={`transition-transform duration-200 ${
-            open ? "rotate-180" : ""
-          }`}
+          className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
         >
           <Image
-            src={HOMEPAGE.arrow.src}
-            alt={HOMEPAGE.arrow.alt}
-            width={24}
-            height={24}
+            src={HEADER_IMAGE.ICONS.blackdropdown.src}
+            alt={HEADER_IMAGE.ICONS.blackdropdown.alt}
+            width={18}
+            height={18}
           />
         </div>
       </div>
-      {/* Dropdown - CHANGED TO ABSOLUTE */}
       {open && (
         <div
           className="

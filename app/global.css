@@ -1,5 +1,13 @@
 @import "./styles/theme.scss";
 /* Arrows */
+.swiper-button-prev{
+  margin-left: 10px !important
+}
+
+.swiper-button-next {
+  margin-right: 10px;
+}
+
 .swiper-button-prev,
 .swiper-button-next {
   color: #fff !important;
@@ -54,4 +62,18 @@
 
 .animate-popupIn {
   animation: popupIn 260ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #71c704;
+    border: 1px solid #71c704;
+    border-radius: 50px !important;
+}
+::-webkit-scrollbar-track {
+    background: #333;
 }
