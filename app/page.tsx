@@ -1,5 +1,5 @@
 import FeaturedSlider from "./components/featuredslider";
-import Header from "./components/header";
+import Header from "./components/headers/mainHeader";
 import HeroSection from "./components/herosection";
 import TopFiveSlider from "./components/top5slider";
 import { bannerItems, trendingItems } from "./data/apiData";

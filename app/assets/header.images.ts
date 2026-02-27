@@ -13,5 +13,13 @@ export const HEADER_IMAGE = {
       src: "/icons/language-tick.svg",
       alt: "Selected",
     },
+    cross: {
+      src: "/icons/close.svg",
+      alt: "Close",
+    },
+    blackdropdown: {
+      src: "/icons/blackdropdown.svg",
+      alt: "dropdown",
+    },
   },
 };

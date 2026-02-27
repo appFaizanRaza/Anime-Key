@@ -15,17 +15,17 @@ export default function HoverPopup({
   onMouseLeave,
 }: HoverPopupProps) {
   if (!rect) return null;
-
   const popupWidth = 380;
+  const EDGE_PADDING = 28;
 
   let left = rect.left + rect.width / 2 - popupWidth / 2;
 
-  if (left < 8) left = 8;
-  if (left + popupWidth > window.innerWidth - 8)
-    left = window.innerWidth - popupWidth - 8;
+  if (left < EDGE_PADDING) left = EDGE_PADDING;
+
+  if (left + popupWidth > window.innerWidth - EDGE_PADDING)
+    left = window.innerWidth - popupWidth - EDGE_PADDING;
 
   const top = rect.top + rect.height / 2 - 220;
-
   return createPortal(
     <div
       className="hidden md:block fixed z-[9999] pointer-events-none
@@ -64,10 +64,9 @@ export default function HoverPopup({
               {AUTH_TEXT.hoverpopup.watchNow}
             </Button>
             <Button
-              variant="ghost"
+              variant="watchlist"
               size="icon"
               aria-label="Add to Watchlist"
-              className="w-11 h-11 rounded-lg bg-text-green/20 hover:bg-black/20"
             >
               <Image
                 src={HOVER_POPUP_IMAGES.WATCHLIST.src}

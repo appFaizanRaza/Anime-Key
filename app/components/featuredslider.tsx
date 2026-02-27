@@ -42,20 +42,14 @@ export default function FeaturedSlider({
         {showSeeAll && (
           <p
             className="
-    relative z-20
-    inline-block
     text-white text-[15px]
     underline
     cursor-pointer
-
+    font-bold
     transition-all duration-200 ease-out
-    transform-gpu
-
     hover:text-text-green
     hover:scale-110
-    hover:-translate-y-[1px]
-    hover:underline-offset-4
-  "
+   "
           >
             {AUTH_TEXT.homepage.seeall}
           </p>
@@ -66,22 +60,22 @@ export default function FeaturedSlider({
       <div className="relative">
         {/* Left Arrow */}
         {showArrows && (
- <Button
-  variant="ghost"
-  size="icon"
-  onClick={scrollLeft}
-  className="
+          <Button
+            variant="ghost"
+            size="none"
+            onClick={scrollLeft}
+            className="
     hidden md:flex
     absolute top-1/2 -translate-y-1/2
-    left-2 md:left-[-36px]
-    z-50
+    left-2 md:left-[-30px]
+    cursor-pointer
   "
->
+          >
             <Image
               src={HOMEPAGE.leftarrow.src}
               alt={HOMEPAGE.leftarrow.alt}
-              width={60}
-              height={30} /* Ensure the arrow is visible */
+              width={24}
+              height={24} /* Ensure the arrow is visible */
             />
           </Button>
         )}
@@ -111,22 +105,22 @@ export default function FeaturedSlider({
 
         {/* Right Arrow */}
         {showArrows && (
-<Button
-  variant="ghost"
-  size="icon"
-  onClick={scrollRight}
-  className="
-    hidden md:flex
+          <Button
+            variant="ghost"
+            size="none"
+            onClick={scrollRight}
+            className="
+    !hidden md:!flex
     absolute top-1/2 -translate-y-1/2
-    right-2 md:right-[-36px]
-    z-50
+    right-2 right-[-30px]
+    cursor-pointer
   "
->
+          >
             <Image
               src={HOMEPAGE.rightarrow.src}
               alt={HOMEPAGE.rightarrow.alt}
-              width={60}
-              height={30}
+              width={24}
+              height={24}
             />
           </Button>
         )}

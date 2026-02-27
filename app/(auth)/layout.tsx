@@ -1,3 +1,5 @@
+import AuthHeader from "../components/headers/authHeader";
+
 export default function AuthLayout({
   children,
 }: {
@@ -5,6 +7,7 @@ export default function AuthLayout({
 }) {
   return (
     <div className="min-h-screen w-full flex bg-background-dark">
+      <AuthHeader />
       {children}
     </div>
   );
