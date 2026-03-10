@@ -11,8 +11,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import ReadMore from "./readmore";
-import { HERO_IMAGES } from "../assets/hero.image";
 import { Button } from "./button";
+import { Images } from "../assets/images";
+
 
 export default function HeroSection({ items }: HeroSectionProps) {
   const [activeModal, setActiveModal] = useState<ContentItem | null>(null);
@@ -69,8 +70,8 @@ export default function HeroSection({ items }: HeroSectionProps) {
                   <div className="flex items-center gap-2 text-white text-lg">
                     <span>{hero.imdb}</span>
                     <Image
-                      src={HERO_IMAGES.STAR.src}
-                      alt={HERO_IMAGES.STAR.alt}
+                      src={Images.STAR.src}
+                      alt={Images.STAR.alt}
                       width={120}
                       height={120}
                     />
@@ -107,14 +108,14 @@ export default function HeroSection({ items }: HeroSectionProps) {
               className="absolute top-5 right-4 cursor-pointer"
             >
               <Image
-                src="/cross.png"
-                alt="Close modal"
+                src={Images.cross.src}
+                alt={Images.cross.alt}
                 width={34}
                 height={34}
               />
             </Button>
             <div className="space-y-6">
-              <h2 className="text-2xl font-bold text-white mb-6">
+              <h2 className="text-movietitle font-bold text-white mb-6">
                 {activeModal.title}
               </h2>
 

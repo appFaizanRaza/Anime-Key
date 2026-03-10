@@ -3,9 +3,9 @@ import { createPortal } from "react-dom";
 import Image from "next/image";
 import ReadMore from "./readmore";
 import { HoverPopupProps } from "../types/components/hoverPopUp";
-import { HOVER_POPUP_IMAGES } from "../assets/hoverPopUp.images";
 import { AUTH_TEXT } from "../constants/label";
 import { Button } from "./button";
+import { Images } from "../assets/images";
 
 export default function HoverPopup({
   rect,
@@ -56,8 +56,8 @@ export default function HoverPopup({
           <div className="flex gap-2">
             <Button variant="primary" size="md" className="flex-1 py-2.5">
               <Image
-                src={HOVER_POPUP_IMAGES.PLAY.src}
-                alt={HOVER_POPUP_IMAGES.PLAY.alt}
+                src={Images.PLAY.src}
+                alt={Images.PLAY.alt}
                 width={20}
                 height={20}
               />
@@ -69,8 +69,8 @@ export default function HoverPopup({
               aria-label="Add to Watchlist"
             >
               <Image
-                src={HOVER_POPUP_IMAGES.WATCHLIST.src}
-                alt={HOVER_POPUP_IMAGES.WATCHLIST.alt}
+                src={Images.WATCHLIST.src}
+                alt={Images.WATCHLIST.alt}
                 width={24}
                 height={24}
               />

@@ -17,7 +17,24 @@
   --text-or: 22px;
   --text-terms: 16px;
   --text-login: 16px;
- 
+  --text-h1: 30px;
+  --text-register: 34px;
+  --text-movie: 24px;
+  --text-h2: 25px;
+  --text-seeall: 15px;
+  --text-movietitle: 24px;
+  --text-h3: 20px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+
+  /* Font Weights */
+  --font-regular1: 400;
+  --font-medium1: 500;
+  --font-semibold1: 600;
+  --font-bold1: 700;
+  --font-extrabold1: 800;
 
   /* Spacing from your Image 1 specs */
   --spacing-login-p: 356px;
@@ -63,15 +80,8 @@
 
   /* ========== Typography ========== */
 
-
-  --text-lg: 18px;
-  --text-xl: 20px;
-
   --font-size-sm: 14px;
   --font-size-lg: 18px;
-
- 
-
 
   --letter-space-tight: -0.02em;
 

@@ -1,15 +1,15 @@
 import Image from "next/image";
 
 import RegisterForm from "@/app/features/register/RegisterForm";
-import { REGISTER_IMAGES } from "@/app/constants/register.images";
 import { AUTH_TEXT } from "@/app/constants/label";
+import { Images } from "@/app/assets/images";
 export default function RegisterWrapper() {
   return (
     <div className="relative w-full min-h-screen flex flex-col md:flex-row">
       <div className="hidden md:block w-1/2 relative">
         <Image
-          src={REGISTER_IMAGES.LEFT.src}
-          alt={REGISTER_IMAGES.LEFT.alt}
+          src={Images.LEFT.src}
+          alt={Images.LEFT.alt}
           fill
           className="object-cover"
           priority
@@ -28,7 +28,7 @@ export default function RegisterWrapper() {
         <div className="w-full max-w-md md:max-w-3xl mx-auto">
           <h1
             className="
-    text-3xl md:text-[34px]
+    text-h1 md:text-register
     mb-6 md:mb-8
     font-semibold
     leading-tight

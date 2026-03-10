@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Option } from "../types/components/customselect";
-import { HEADER_IMAGE } from "../assets/header.images";
+import { Images } from "../assets/images";
 
 export default function CustomSelect({
   placeholder,
@@ -56,8 +56,8 @@ export default function CustomSelect({
           className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
         >
           <Image
-            src={HEADER_IMAGE.ICONS.blackdropdown.src}
-            alt={HEADER_IMAGE.ICONS.blackdropdown.alt}
+            src={Images.dropdown.src}
+            alt={Images.dropdown.alt}
             width={18}
             height={18}
           />

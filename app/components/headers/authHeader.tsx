@@ -3,8 +3,8 @@ import Image from "next/image";
 import { COMMON } from "@/app/common/logo";
 import { LANGUAGES } from "@/app/constants/languages";
 import { useState, useEffect, useRef } from "react";
-import { HEADER_IMAGE } from "@/app/assets/header.images";
 import { Button } from "@/app/components/button";
+import { Images } from "@/app/assets/images";
 
 export default function AuthHeader() {
   const [isLangOpen, setIsLangOpen] = useState(false);
@@ -50,15 +50,15 @@ export default function AuthHeader() {
           onClick={() => setIsLangOpen((p) => !p)}
         >
           <Image
-            src={HEADER_IMAGE.LOGO.src}
-            alt={HEADER_IMAGE.LOGO.alt}
+            src={Images.LOGO.src}
+            alt={Images.LOGO.alt}
             width={20}
             height={20}
           />
           <span className="flex-1 text-left">{selectedLanguage.label}</span>
           <Image
-            src={HEADER_IMAGE.ICONS.dropdown.src}
-            alt={HEADER_IMAGE.ICONS.dropdown.alt}
+            src={Images.dropdown.src}
+            alt={Images.dropdown.alt}
             width={20}
             height={20}
             className={`transition-transform duration-200 ${
@@ -85,7 +85,7 @@ export default function AuthHeader() {
               {LANGUAGES.map((lang) => (
                 <Button
                   key={lang.code}
-                  variant="menu"
+                  variant="language"
                   size="sm"
                   onClick={() => handleLanguageSelect(lang)}
                   className={`${selectedLanguage.code === lang.code ? "bg-white/5" : ""}`}
@@ -93,11 +93,11 @@ export default function AuthHeader() {
                   {lang.label}
                   {selectedLanguage.code === lang.code && (
                     <Image
-                      src={HEADER_IMAGE.ICONS.tick.src}
-                      alt={HEADER_IMAGE.ICONS.tick.alt}
+                      src={Images.tick.src}
+                      alt={Images.tick.alt}
                       width={16}
                       height={16}
-                      className="ml-auto"
+                      className=""
                     />
                   )}
                 </Button>

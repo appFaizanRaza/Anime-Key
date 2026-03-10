@@ -8,13 +8,10 @@ export default function TopFiveSlider({ title, items }: TopFiveSliderProps) {
   return (
     <>
       <section className="mt-12 px-4 sm:px-6 md:px-10 overflow-hidden">
-        {/* Title */}
-        <h2 className="text-2xl font-extrabold text-white flex items-center gap-3">
+        <h2 className="text-movietitle font-extrabold text-white flex items-center gap-3">
           <span className="h-5 w-1 bg-accent-green rounded" />
           {title}
         </h2>
-
-        {/* Static Top Five Row */}
         <div className="flex gap-10 overflow-x-auto md:overflow-visible">
           {items.slice(0, 5).map((item, index) => {
             const poster =

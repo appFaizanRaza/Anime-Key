@@ -9,9 +9,9 @@ import { ICONS } from "../../assets/icons";
 import { LANGUAGES } from "../../constants/languages";
 import { usePathname } from "next/navigation";
 import SearchIcon from "../../icons/searchicon";
-import { HEADER_IMAGE } from "../../assets/header.images";
 import UserMenu from "../userMenu";
 import { Button } from "../button";
+import { Images } from "@/app/assets/images";
 
 export default function Header() {
   const pathname = usePathname();
@@ -134,8 +134,8 @@ export default function Header() {
                 className="h-[36px] !min-w-[48px] md:!min-w-[120px] gap-1 md:gap-2"
               >
                 <Image
-                  src={HEADER_IMAGE.LOGO.src}
-                  alt={HEADER_IMAGE.LOGO.alt}
+                  src={Images.LOGO.src}
+                  alt={Images.LOGO.alt}
                   width={20}
                   height={20}
                 />
@@ -143,8 +143,8 @@ export default function Header() {
                   {selectedLanguage.label}
                 </span>
                 <Image
-                  src={HEADER_IMAGE.ICONS.dropdown.src}
-                  alt={HEADER_IMAGE.ICONS.dropdown.alt}
+                  src={Images.dropdown.src}
+                  alt={Images.dropdown.alt}
                   width={20}
                   height={20}
                   className={`transition-transform duration-200 ${
@@ -171,7 +171,7 @@ export default function Header() {
                   {LANGUAGES.map((lang) => (
                     <Button
                       key={lang.code}
-                      variant="menu"
+                      variant="language"
                       size="sm"
                       onClick={() => handleLanguageSelect(lang)}
                       className={
@@ -182,8 +182,8 @@ export default function Header() {
 
                       {selectedLanguage.code === lang.code && (
                         <Image
-                          src={HEADER_IMAGE.ICONS.tick.src}
-                          alt={HEADER_IMAGE.ICONS.tick.alt}
+                          src={Images.tick.src}
+                          alt={Images.tick.alt}
                           width={16}
                           height={16}
                         />
@@ -214,7 +214,7 @@ export default function Header() {
         <div
           className={`
     fixed top-16 left-0 w-full
-    h-[calc(100vh-8rem)]
+    h-[calc(100vh-64px)]
     bg-black
     z-50
     transform transition-transform duration-300 ease-in-out
@@ -242,8 +242,8 @@ export default function Header() {
                 aria-label="Close menu"
               >
                 <Image
-                  src={HEADER_IMAGE.ICONS.cross.src}
-                  alt={HEADER_IMAGE.ICONS.cross.alt}
+                  src={Images.cross.src}
+                  alt={Images.cross.alt}
                   width={24}
                   height={24}
                 />

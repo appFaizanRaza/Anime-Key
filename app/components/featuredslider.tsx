@@ -4,14 +4,14 @@ import MovieCard from "./moviecard";
 import { FeaturedSliderProps } from "../types/components/featuredslider";
 import { AUTH_TEXT } from "../constants/label";
 import Image from "next/image";
-import { HOMEPAGE } from "../assets/homepage";
 import { Button } from "./button";
+import { Images } from "../assets/images";
 
 export default function FeaturedSlider({
   title,
   items,
   showSeeAll = false,
-  horizontal = false, // 👈 add this
+  horizontal = false,
 }: FeaturedSliderProps) {
   const sliderRef = useRef<HTMLDivElement>(null);
 
@@ -34,7 +34,7 @@ export default function FeaturedSlider({
   return (
     <section className="relative px-4 md:px-8 lg:px-12 my-8 w-full">
       <div className="relative z-20 flex items-center justify-between mb-6">
-        <h2 className="text-[25px] font-extrabold text-white flex items-center gap-3">
+        <h2 className="text-h2 font-extrabold text-white flex items-center gap-3">
           <span className="h-5 w-1 bg-accent-green rounded" />
           {title}
         </h2>
@@ -42,7 +42,7 @@ export default function FeaturedSlider({
         {showSeeAll && (
           <p
             className="
-    text-white text-[15px]
+    text-white text-seeall
     underline
     cursor-pointer
     font-bold
@@ -72,8 +72,8 @@ export default function FeaturedSlider({
   "
           >
             <Image
-              src={HOMEPAGE.leftarrow.src}
-              alt={HOMEPAGE.leftarrow.alt}
+              src={Images.leftarrow.src}
+              alt={Images.leftarrow.alt}
               width={24}
               height={24} /* Ensure the arrow is visible */
             />
@@ -95,11 +95,7 @@ export default function FeaturedSlider({
   "
         >
           {items.map((item, index) => (
-            <MovieCard
-              key={item.id}
-              item={item}
-              horizontal={horizontal} // 👈 pass this down
-            />
+            <MovieCard key={item.id} item={item} horizontal={horizontal} />
           ))}
         </div>
 
@@ -117,8 +113,8 @@ export default function FeaturedSlider({
   "
           >
             <Image
-              src={HOMEPAGE.rightarrow.src}
-              alt={HOMEPAGE.rightarrow.alt}
+              src={Images.rightarrow.src}
+              alt={Images.rightarrow.alt}
               width={24}
               height={24}
             />

@@ -28,6 +28,10 @@ export const buttonVariants = cva(
 
         watchlist:
           "rounded-lg bg-text-green/20 hover:bg-black/20",
+        
+        language:
+          "w-full text-left text-white hover:bg-white/10 rounded-none justify-start pl-4",
+        
       },
 
       size: {

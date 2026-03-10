@@ -184,7 +184,7 @@ export default function RegisterForm() {
             {AUTH_TEXT.register.hasAccount}{" "}
             <Link
               href={ROUTES.LOGIN}
-              className="text-button underline hover:text-button"
+              className="text-button text-login font-medium underline hover:text-button"
             >
               Login here
             </Link>

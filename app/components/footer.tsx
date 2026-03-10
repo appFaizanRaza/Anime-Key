@@ -3,8 +3,8 @@ import Link from "next/link";
 import { COMMON } from "../common/logo";
 import { SOCIAL_LINKS } from "../constants/social-links";
 import { FOOTER_LINKS } from "../constants/footer";
-import { FOOTER_IMAGES } from "../assets/footer.images";
 import { AUTH_TEXT } from "../constants/label";
+import { Images } from "../assets/images";
 
 {
   FOOTER_LINKS.map((link) => (
@@ -54,7 +54,7 @@ export default function Footer() {
       {/* ⭐ ACCOUNT SOCIAL SECTION */}
       <div className="flex flex-row gap-12">
         <div className="mt-4">
-          <h3 className="text-white text-xl font-bold mb-4">
+          <h3 className="text-white text-h3 font-bold mb-4">
             {AUTH_TEXT.footer.title}
           </h3>
 
@@ -75,20 +75,20 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-4">
-          <h3 className="text-white text-xl font-bold mb-4">
+          <h3 className="text-white text-h3 font-bold mb-4">
             {AUTH_TEXT.footer.download}
           </h3>
 
           <div className="flex flex-col space-y-2 ml-6">
             <Image
-              src={FOOTER_IMAGES.ICON.Apple.src}
-              alt={FOOTER_IMAGES.ICON.Apple.alt}
+              src={Images.Apple.src}
+              alt={Images.Apple.alt}
               width={120}
               height={48}
             />
             <Image
-              src={FOOTER_IMAGES.ICON.Google.src}
-              alt={FOOTER_IMAGES.ICON.Google.alt}
+              src={Images.Google.src}
+              alt={Images.Google.alt}
               width={120}
               height={48}
             />
