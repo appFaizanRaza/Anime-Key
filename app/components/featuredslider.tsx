@@ -4,14 +4,14 @@ import MovieCard from "./moviecard";
 import { FeaturedSliderProps } from "../types/components/featuredslider";
 import { AUTH_TEXT } from "../constants/label";
 import Image from "next/image";
-import { HOMEPAGE } from "../assets/homepage";
 import { Button } from "./button";
+import { Images } from "../assets/images";
 
 export default function FeaturedSlider({
   title,
   items,
   showSeeAll = false,
-  horizontal = false, // 👈 add this
+  horizontal = false,
 }: FeaturedSliderProps) {
   const sliderRef = useRef<HTMLDivElement>(null);
 
@@ -34,7 +34,7 @@ export default function FeaturedSlider({
   return (
     <section className="relative px-4 md:px-8 lg:px-12 my-8 w-full">
       <div className="relative z-20 flex items-center justify-between mb-6">
-        <h2 className="text-[25px] font-extrabold text-white flex items-center gap-3">
+        <h2 className="text-h2 font-extrabold text-white flex items-center gap-3">
           <span className="h-5 w-1 bg-accent-green rounded" />
           {title}
         </h2>
@@ -42,20 +42,14 @@ export default function FeaturedSlider({
         {showSeeAll && (
           <p
             className="
-    relative z-20
-    inline-block
-    text-white text-[15px]
+    text-white text-seeall
     underline
     cursor-pointer
-
+    font-bold
     transition-all duration-200 ease-out
-    transform-gpu
-
     hover:text-text-green
     hover:scale-110
-    hover:-translate-y-[1px]
-    hover:underline-offset-4
-  "
+   "
           >
             {AUTH_TEXT.homepage.seeall}
           </p>
@@ -66,22 +60,22 @@ export default function FeaturedSlider({
       <div className="relative">
         {/* Left Arrow */}
         {showArrows && (
- <Button
-  variant="ghost"
-  size="icon"
-  onClick={scrollLeft}
-  className="
+          <Button
+            variant="ghost"
+            size="none"
+            onClick={scrollLeft}
+            className="
     hidden md:flex
     absolute top-1/2 -translate-y-1/2
-    left-2 md:left-[-36px]
-    z-50
+    left-2 md:left-[-30px]
+    cursor-pointer
   "
->
+          >
             <Image
-              src={HOMEPAGE.leftarrow.src}
-              alt={HOMEPAGE.leftarrow.alt}
-              width={60}
-              height={30} /* Ensure the arrow is visible */
+              src={Images.leftarrow.src}
+              alt={Images.leftarrow.alt}
+              width={24}
+              height={24} /* Ensure the arrow is visible */
             />
           </Button>
         )}
@@ -101,32 +95,28 @@ export default function FeaturedSlider({
   "
         >
           {items.map((item, index) => (
-            <MovieCard
-              key={item.id}
-              item={item}
-              horizontal={horizontal} // 👈 pass this down
-            />
+            <MovieCard key={item.id} item={item} horizontal={horizontal} />
           ))}
         </div>
 
         {/* Right Arrow */}
         {showArrows && (
-<Button
-  variant="ghost"
-  size="icon"
-  onClick={scrollRight}
-  className="
-    hidden md:flex
+          <Button
+            variant="ghost"
+            size="none"
+            onClick={scrollRight}
+            className="
+    !hidden md:!flex
     absolute top-1/2 -translate-y-1/2
-    right-2 md:right-[-36px]
-    z-50
+    right-2 right-[-30px]
+    cursor-pointer
   "
->
+          >
             <Image
-              src={HOMEPAGE.rightarrow.src}
-              alt={HOMEPAGE.rightarrow.alt}
-              width={60}
-              height={30}
+              src={Images.rightarrow.src}
+              alt={Images.rightarrow.alt}
+              width={24}
+              height={24}
             />
           </Button>
         )}

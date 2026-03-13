@@ -23,8 +23,6 @@ export async function POST(req: Request) {
   const { action, email, phone, password } = body;
 
   const users = await readUsers();
-
-  /* ---------- LOGIN ---------- */
   if (action === "login") {
     const user = users.find(
       (u) =>
@@ -38,8 +36,6 @@ export async function POST(req: Request) {
         { status: 401 },
       );
     }
-
-    // ✅ SUCCESS RESPONSE
     const response = NextResponse.json({
       message: "Login successful",
       user: {
@@ -48,8 +44,6 @@ export async function POST(req: Request) {
         phone: user.phone,
       },
     });
-
-    // ✅ COOKIE SET HERE
     response.cookies.set("auth-token", String(user.id), {
       httpOnly: true,
       path: "/",
@@ -58,8 +52,6 @@ export async function POST(req: Request) {
 
     return response;
   }
-
-  /* ---------- REGISTER ---------- */
   if (action === "register") {
     const { firstName, lastName, dob } = body;
 

@@ -21,8 +21,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label className="mb-1 block text-sm text-gray-300">{label}</label>
         )}
-
-        {/* INPUT WRAPPER */}
         <div
           className={cn(
             "flex h-14 items-center rounded-md border bg-white transition",
@@ -31,12 +29,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               : "border-gray-300 focus-within:border-primary-lime",
           )}
         >
-          {/* LEFT ADDON (STD CODE) */}
           {leftAddon && (
             <div className="flex items-center px-3 text-black">{leftAddon}</div>
           )}
-
-          {/* INPUT */}
           <input
             ref={ref}
             {...props}
@@ -45,16 +40,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               className,
             )}
           />
-
-          {/* RIGHT ICON */}
           {rightIcon && (
             <Button
-  type="button"
-  variant="ghost"
-  size="sm"
-  onClick={onRightIconClick}
-  className="px-3 text-gray-600 hover:text-black rounded-none"
->
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={onRightIconClick}
+              className="px-3 text-gray-600 hover:text-black rounded-none"
+            >
               {rightIcon}
             </Button>
           )}

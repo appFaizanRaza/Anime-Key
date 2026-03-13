@@ -91,7 +91,7 @@ export default function LoginForm() {
                 pr-4
                 outline-none
                 border-b-2
-              border-button
+                border-button
                 cursor-pointer
                 text-center
               "

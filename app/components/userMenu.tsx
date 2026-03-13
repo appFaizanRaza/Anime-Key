@@ -27,16 +27,18 @@ export default function UserMenu({
   const initial = name.charAt(0).toUpperCase();
 
   return (
-    <div ref={menuRef} className="relative mr-8">
+    <div ref={menuRef} className="relative">
       <Button
         variant="outline"
-        size="sm"
+        size="none"
         onClick={() => setOpen(!open)}
         className="
-    border-text-green
-    rounded-2xl
-    px-2
-    hover:bg-text-green/30
+    !border-text-green
+    !rounded-xl
+    px-2 
+    mr-8
+    !bg-text-green/20
+    !hover:bg-text-green/30
   "
       >
         {avatarUrl ? (
@@ -58,7 +60,7 @@ export default function UserMenu({
             absolute right-0 mt-3 w-48
             bg-zinc-900 border border-zinc-700
             rounded-xl shadow-xl
-            py-2
+            px-2
             z-50
           "
         >
@@ -74,7 +76,7 @@ export default function UserMenu({
             {AUTH_TEXT.usermenu.settings}
           </Button>
 
-          <hr className="my-2 border-zinc-700" />
+          <hr className="border-zinc-700" />
 
           <Button variant="danger" size="sm" onClick={onLogout}>
             {AUTH_TEXT.usermenu.logout}

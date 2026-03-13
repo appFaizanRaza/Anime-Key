@@ -11,8 +11,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import ReadMore from "./readmore";
-import { HERO_IMAGES } from "../assets/hero.image";
 import { Button } from "./button";
+import { Images } from "../assets/images";
+
 
 export default function HeroSection({ items }: HeroSectionProps) {
   const [activeModal, setActiveModal] = useState<ContentItem | null>(null);
@@ -69,8 +70,8 @@ export default function HeroSection({ items }: HeroSectionProps) {
                   <div className="flex items-center gap-2 text-white text-lg">
                     <span>{hero.imdb}</span>
                     <Image
-                      src={HERO_IMAGES.STAR.src}
-                      alt={HERO_IMAGES.STAR.alt}
+                      src={Images.STAR.src}
+                      alt={Images.STAR.alt}
                       width={120}
                       height={120}
                     />
@@ -98,22 +99,27 @@ export default function HeroSection({ items }: HeroSectionProps) {
 
       {activeModal && (
         <div className="fixed inset-0 z-[99999] bg-black/60 flex items-center justify-center">
-          <div className="relative w-[90%] md:w-[650px] max-h-[85vh] bg-zinc-900 rounded-2xl p-6 shadow-2xl overflow-y-auto">
+          <div className="relative w-[90%] md:w-[850px] h-72 bg-zinc-800 rounded-2xl p-8 shadow-2xl overflow-y-auto">
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setActiveModal(null)}
               aria-label="Close modal"
-              className="absolute top-4 right-4 text-gray-400 text-xl"
+              className="absolute top-5 right-4 cursor-pointer"
             >
-              ✕
+              <Image
+                src={Images.cross.src}
+                alt={Images.cross.alt}
+                width={34}
+                height={34}
+              />
             </Button>
             <div className="space-y-6">
-              <h2 className="text-2xl font-bold text-white mb-6">
+              <h2 className="text-movietitle font-bold text-white mb-6">
                 {activeModal.title}
               </h2>
 
-              <hr />
+              <hr className="text-gray-500"/>
 
               <p className="text-gray-300 leading-relaxed whitespace-pre-line">
                 {activeModal.description}

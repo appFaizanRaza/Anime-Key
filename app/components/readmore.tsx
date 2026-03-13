@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ReadMoreProps } from "../types/components/readmore";
@@ -15,8 +14,6 @@ export default function ReadMore({
 }: ReadMoreProps) {
   const textRef = useRef<HTMLParagraphElement>(null);
   const [isOverflowing, setIsOverflowing] = useState(false);
-
-  // Tailwind-safe clamp classes
   const clampClass =
     lines === 1
       ? "line-clamp-1"
@@ -50,7 +47,7 @@ export default function ReadMore({
         <>
           {href ? (
             <Link href={href} className={linkClassName}>
-             {AUTH_TEXT.readmore.readMore}
+              {AUTH_TEXT.readmore.readMore}
             </Link>
           ) : (
             <span onClick={onOpen} className={linkClassName}>

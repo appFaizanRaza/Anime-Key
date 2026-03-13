@@ -2,18 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { COMMON } from "../common/logo";
+import { COMMON } from "../../common/logo";
 import { useState, useEffect, useRef } from "react";
-import { NAV_LINKS } from "../constants/navigation";
-import { ICONS } from "../assets/icons";
-import { LANGUAGES } from "../constants/languages";
+import { NAV_LINKS } from "../../constants/navigation";
+import { ICONS } from "../../assets/icons";
+import { LANGUAGES } from "../../constants/languages";
 import { usePathname } from "next/navigation";
-import SearchIcon from "../icons/searchicon";
-import { HEADER_IMAGE } from "../assets/header.images";
-import { AUTH_TEXT } from "../constants/label";
-import { ROUTES } from "../shared/routes/app.route";
-import UserMenu from "./userMenu";
-import { Button } from "./button";
+import SearchIcon from "../../icons/searchicon";
+import UserMenu from "../userMenu";
+import { Button } from "../button";
+import { Images } from "@/app/assets/images";
 
 export default function Header() {
   const pathname = usePathname();
@@ -54,7 +52,7 @@ export default function Header() {
     setIsLangOpen(false);
   };
 
-  const isLoggedIn = true; // replace with real auth state
+  const isLoggedIn = true;
 
   return (
     <header
@@ -133,27 +131,20 @@ export default function Header() {
                 size="sm"
                 aria-label="Select language"
                 onClick={() => setIsLangOpen((p) => !p)}
-                className="
-    h-[36px]
-    min-w-[48px] md:min-w-[120px]
-    justify-center md:justify-start
-    gap-1 md:gap-2
-  "
+                className="h-[36px] !min-w-[48px] md:!min-w-[120px] gap-1 md:gap-2"
               >
                 <Image
-                  src={HEADER_IMAGE.LOGO.src}
-                  alt={HEADER_IMAGE.LOGO.alt}
+                  src={Images.LOGO.src}
+                  alt={Images.LOGO.alt}
                   width={20}
                   height={20}
                 />
-
                 <span className="hidden md:block flex-1 text-left">
                   {selectedLanguage.label}
                 </span>
-
                 <Image
-                  src={HEADER_IMAGE.ICONS.dropdown.src}
-                  alt={HEADER_IMAGE.ICONS.dropdown.alt}
+                  src={Images.dropdown.src}
+                  alt={Images.dropdown.alt}
                   width={20}
                   height={20}
                   className={`transition-transform duration-200 ${
@@ -161,10 +152,9 @@ export default function Header() {
                   }`}
                 />
               </Button>
-
               <div
                 className={`
-                  absolute right-0 top-full w-36
+                  absolute w-36
                   bg-[#1a1a1a]
                   border border-white/10
                   rounded-md shadow-2xl
@@ -181,7 +171,7 @@ export default function Header() {
                   {LANGUAGES.map((lang) => (
                     <Button
                       key={lang.code}
-                      variant="menu"
+                      variant="language"
                       size="sm"
                       onClick={() => handleLanguageSelect(lang)}
                       className={
@@ -192,11 +182,10 @@ export default function Header() {
 
                       {selectedLanguage.code === lang.code && (
                         <Image
-                          src={HEADER_IMAGE.ICONS.tick.src}
-                          alt={HEADER_IMAGE.ICONS.tick.alt}
+                          src={Images.tick.src}
+                          alt={Images.tick.alt}
                           width={16}
                           height={16}
-                          className="ml-auto"
                         />
                       )}
                     </Button>
@@ -204,6 +193,88 @@ export default function Header() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className={`
+          fixed inset-0 z-40 md:hidden
+          transition-all duration-300 ease-in-out
+          ${
+            isMenuOpen
+              ? "opacity-100 visible"
+              : "opacity-0 invisible pointer-events-none"
+          }
+        `}
+      >
+        <div
+          className="absolute z-50 bg-black"
+          onClick={() => setIsMenuOpen(false)}
+        />
+        <div
+          className={`
+    fixed top-16 left-0 w-full
+    h-[calc(100vh-64px)]
+    bg-black
+    z-50
+    transform transition-transform duration-300 ease-in-out
+    ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}
+  `}
+        >
+          <div className="flex flex-col h-full">
+            <div className="flex items-center justify-between p-4 border-b border-white/10">
+              <Link
+                href="/"
+                className="flex items-center"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Image
+                  src={COMMON.LOGO.src}
+                  alt={COMMON.LOGO.alt}
+                  width={40}
+                  height={40}
+                  className="w-8 h-8"
+                />
+              </Link>
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="p-2 text-white hover:text-text-green transition-colors"
+                aria-label="Close menu"
+              >
+                <Image
+                  src={Images.cross.src}
+                  alt={Images.cross.alt}
+                  width={24}
+                  height={24}
+                />
+              </button>
+            </div>
+            <nav className="flex-1 p-4">
+              <div className="space-y-2">
+                {NAV_LINKS.map(({ label, href }) => {
+                  const isActive = pathname === href;
+
+                  return (
+                    <Link
+                      key={href}
+                      href={href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`
+                        block px-4 py-3 rounded-lg text-lg font-medium
+                        transition-all duration-200
+                        ${
+                          isActive
+                            ? "bg-accent-green/20 text-text-green border-l-4 border-accent-green"
+                            : "text-white hover:bg-white/10 hover:text-text-green"
+                        }
+                      `}
+                    >
+                      {label}
+                    </Link>
+                  );
+                })}
+              </div>
+            </nav>
           </div>
         </div>
       </div>

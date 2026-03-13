@@ -1,5 +1,3 @@
-import { read, watch } from "fs";
-
 export const AUTH_TEXT = {
   login: {
     title: "Welcome Back",

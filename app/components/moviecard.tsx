@@ -26,7 +26,7 @@ export default function MovieCard({
       if (cardRef.current) {
         setRect(cardRef.current.getBoundingClientRect());
       }
-    }, 800);
+    }, 500);
   };
 
   const hidePopup = () => {
@@ -54,10 +54,10 @@ export default function MovieCard({
   return (
     <div
       ref={cardRef}
-      className={`relative shrink-0 ${
+      className={`relative flex-none ${
         horizontal
-          ? "w-[70%] sm:w-[50%] md:w-[40%] lg:w-[25%] xl:w-[18%]"
-          : "w-[48%] sm:w-[45%] md:w-[30%] lg:w-[18%] xl:w-[13.1%]"
+          ? "w-[160px] sm:w-[260px] md:w-[280px] lg:w-[290px]"
+          : "w-[160px] sm:w-[200px] md:w-[200px] lg:w-[220px] xl:w-[224px]"
       }`}
     >
       <div onMouseEnter={showPopup} onMouseLeave={hidePopup}>
